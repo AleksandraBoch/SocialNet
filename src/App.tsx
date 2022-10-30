@@ -1,26 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {Header} from "./components/header/header";
+import {NavBar} from "./components/navBar/navBar";
+import {Profile} from "./components/Profile/Profile";
+import {Dialogs} from "./components/Dialogs/dialogs";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {News} from "./components/news/news";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div className={'app-wrapper'}>
+            <BrowserRouter>
+            <Header/>
+            <NavBar/>
+            <div className={'app-wrapper-content'}>
+<Routes>
+    <Route path={'/profile'} element={<Profile/>}/>
+<Route path={'/dialogs'} element={<Dialogs/>}/>
+<Route path={'/news'} element={<News/>}/>
+</Routes>
+
+            </div>
+
+        </BrowserRouter>
+        </div>
+    );
 }
 
 export default App;
