@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/SocialNet/static/css/main.4d7b9b99.css",
+    "main.js": "/SocialNet/static/js/main.70686bfb.js",
+    "static/js/787.0e68ad3e.chunk.js": "/SocialNet/static/js/787.0e68ad3e.chunk.js",
+    "index.html": "/SocialNet/index.html",
+    "main.4d7b9b99.css.map": "/SocialNet/static/css/main.4d7b9b99.css.map",
+    "main.70686bfb.js.map": "/SocialNet/static/js/main.70686bfb.js.map",
+    "787.0e68ad3e.chunk.js.map": "/SocialNet/static/js/787.0e68ad3e.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4d7b9b99.css",
+    "static/js/main.70686bfb.js"
+  ]
+}
