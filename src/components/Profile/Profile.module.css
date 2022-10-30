@@ -1,0 +1,11 @@
+.content img{
+    width: 1000px;
+    max-height: 200px;
+
+}
+
+.avatar{
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+}
