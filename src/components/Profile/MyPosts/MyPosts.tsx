@@ -10,6 +10,8 @@ export const MyPosts = () => {
 
     ]
 
+    let postElement=postsData.map(p=><Post message={p.message} likeCount={p.likesCount}/>)
+
     return (
 
         <div className={s.postsBlock}>
@@ -20,8 +22,6 @@ export const MyPosts = () => {
                 <div>
                     <textarea></textarea>
                 </div>
-
-
                 <div>
 
                     <button>add post</button>
@@ -29,8 +29,7 @@ export const MyPosts = () => {
 
             </div>
             <div className={s.posts}>
-                <Post message={postsData[0].message} likeCount={postsData[0].likesCount}/>
-                <Post message={postsData[1].message} likeCount={postsData[1].likesCount}/>
+                {postElement}
             </div>
         </div>
 
