@@ -7,6 +7,8 @@ type PostType={
 }
 
 
+
+
 export const Post = (props:PostType) => {
     return (
 
