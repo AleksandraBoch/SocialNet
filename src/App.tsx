@@ -8,7 +8,10 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {News} from "./components/news/news";
 
 
+
 function App() {
+
+
     return (
         <div className={'app-wrapper'}>
             <BrowserRouter>
@@ -16,7 +19,7 @@ function App() {
             <NavBar/>
             <div className={'app-wrapper-content'}>
 <Routes>
-    <Route path={'/profile'} element={<Profile/>}/>
+    <Route path={'/profile'} element={<Profile />}/>
 <Route path={'/dialogs/*'} element={<Dialogs/>}/>
 <Route path={'/news'} element={<News/>}/>
 </Routes>

@@ -4,11 +4,13 @@ import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo";
 
 export const Profile = () => {
+
+
     return (
 
         <div>
           <ProfileInfo/>
-            <MyPosts/>
+            <MyPosts />
 
 
         </div>
