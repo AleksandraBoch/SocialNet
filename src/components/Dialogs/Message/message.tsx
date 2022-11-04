@@ -11,6 +11,8 @@ export const Message=(props:MessagePropsType)=>{
     return(
         <>
         <div className={s.dialog}>{props.message}</div>
+
+
         </>
     )
 }

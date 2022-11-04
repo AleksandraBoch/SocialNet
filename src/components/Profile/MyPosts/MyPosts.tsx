@@ -20,6 +20,11 @@ export const MyPosts = (props:PostPropsType) => {
     map(post => <Post message={post.message} likeCount={post.likesCount}/>)
 
 
+    // let newPostElement=React.createRef()
+
+const addPost=()=>{
+// let text=newPostElement.current.value;
+}
     return (
 
         <div className={s.postsBlock}>
@@ -28,11 +33,14 @@ export const MyPosts = (props:PostPropsType) => {
             <div>new post
 
                 <div>
-                    <textarea></textarea>
+                    <textarea ></textarea>
+                    {/*ref={newPostElement}*/}
+
+
                 </div>
                 <div>
 
-                    <button>add post</button>
+                    <button onClick={addPost}>add post</button>
                 </div>
 
             </div>

@@ -22,6 +22,8 @@ let messageElement=props.data.messageData.map(message=><Message  id={message.id}
         {messageElement}
 
     </div>
+    <textarea></textarea>
+    <button>Send</button>
 </div>
 
 

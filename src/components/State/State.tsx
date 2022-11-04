@@ -36,6 +36,7 @@ export let state:StateProps = {
         {id: 1, message: 'My first post', likesCount: 12},
          {id: 1, message: 'Im Okay', likesCount: 11},
      ]
+
  }
 
 
