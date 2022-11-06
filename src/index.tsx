@@ -1,19 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {state} from "./components/State/State";
+import {addPost, state} from "./components/State/State";
+import {renderReactTree} from "./render";
 
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-root.render(
-  <React.StrictMode>
-    <App postsData={state.postData} dialogsData={state.dialogsPage}/>
-  </React.StrictMode>
-);
+
+renderReactTree(state)
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

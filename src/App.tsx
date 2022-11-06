@@ -7,15 +7,16 @@ import {Dialogs} from "./components/Dialogs/dialogs";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {News} from "./components/news/news";
 import {PostsDataType} from "./components/Profile/MyPosts/MyPosts";
-import {DialogsPageProps} from "./components/State/State";
+import {addPost, DialogsPageProps} from "./components/State/State";
 
 
-export type AppPropsType={
+export type AppPropsType = {
     postsData: Array<PostsDataType>
-    dialogsData:DialogsPageProps
+    dialogsData: DialogsPageProps
+    addPost:(text:string)=>void
 }
 
-function App(props:AppPropsType) {
+function App(props: AppPropsType) {
 
     return (
         <div className={'app-wrapper'}>
@@ -24,7 +25,10 @@ function App(props:AppPropsType) {
                 <NavBar/>
                 <div className={'app-wrapper-content'}>
                     <Routes>
-                        <Route path={'/profile'} element={<Profile postsData={props.postsData}/>}/>
+                        <Route path={'/profile'} element={<Profile
+                            postsData={props.postsData}
+                        addPost={props.addPost}
+                        />}/>
 
 
                         <Route path={'/dialogs/*'} element={<Dialogs data={props.dialogsData}/>}/>

@@ -1,8 +1,8 @@
 import React from "react";
 import {PostsDataType} from "../Profile/MyPosts/MyPosts";
 import {MessagePropsType} from "../Dialogs/Message/message";
-import {DialogsProps} from "../Dialogs/dialogs";
 import {DialogsItemProps} from "../Dialogs/DialogItem/dialogItem";
+import {renderReactTree} from "../../render";
 
 export type DialogsPageProps = {
     dialogsData: Array<DialogsItemProps>
@@ -13,7 +13,9 @@ export type DialogsPageProps = {
 export type StateProps = {
     dialogsPage: DialogsPageProps
     postData: Array<PostsDataType>
+
 }
+
 
 
 export let state:StateProps = {
@@ -35,12 +37,18 @@ export let state:StateProps = {
      'postData': [
         {id: 1, message: 'My first post', likesCount: 12},
          {id: 1, message: 'Im Okay', likesCount: 11},
+         {id:3,message:'im learning js',likesCount:1}
      ]
 
  }
 
-
-
-
-
+export let addPost=(text:string)=>{
+    const newPost:PostsDataType={
+        id:new Date().getTime(),
+        message: text,
+        likesCount:0
+    }
+    state.postData.push(newPost)
+    renderReactTree(state)
+}
 
