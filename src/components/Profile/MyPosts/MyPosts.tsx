@@ -1,4 +1,4 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
 import s from './MyPosts.module.css'
 import {Post} from "./Post/Post";
 
@@ -11,6 +11,7 @@ export type PostsDataType = {
 type PostPropsType = {
     postsData: Array<PostsDataType>
     addPost:(text:string)=>void
+    updateNewPost:(newText:string)=>void
 }
 
 export const MyPosts = (props:PostPropsType) => {
@@ -21,11 +22,17 @@ export const MyPosts = (props:PostPropsType) => {
     let newPostElement=React.createRef<HTMLTextAreaElement>()
 
 const addPost=()=>{
-  // alert(newPostElement.current&&newPostElement.current.value)
     if(newPostElement.current){
         props.addPost(newPostElement.current.value)
     }
 }
+
+let onPostChange=()=>{
+        let text=newPostElement.current&&newPostElement.current.value
+    props.updateNewPost('newText')
+}
+    const onChangeHandler=(e:ChangeEvent<HTMLTextAreaElement>)=>{props.updateNewPost(e.currentTarget.value)}
+
     return (
         <div className={s.postsBlock}>
 
@@ -33,7 +40,10 @@ const addPost=()=>{
             <div>new post
 
                 <div>
-                    <textarea ref={newPostElement}></textarea>
+                    <textarea ref={newPostElement}
+
+                              onChange={onChangeHandler}/>
+
                 </div>
                 <div>
 
