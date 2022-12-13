@@ -2,7 +2,8 @@ import React from "react";
 import {PostsDataType} from "../Profile/MyPosts/MyPosts";
 import {MessagePropsType} from "../Dialogs/Message/message";
 import {DialogsItemProps} from "../Dialogs/DialogItem/dialogItem";
-import {renderReactTree} from "../../render";
+import {renderReactTree} from "./render";
+
 
 export type DialogsPageProps = {
     newMessageText:string,
@@ -60,7 +61,8 @@ export let addMessage=(text:string)=>{
         message:text
     }
     state.dialogsPage.messageData.push(newMessage)
-    renderReactTree(state)
+    renderReactTree()
+
 }
 
 
@@ -71,17 +73,17 @@ export let addPost = (text: string) => {
         likesCount: 0
     }
     state.ProfilePage.posts.push(newPost)
-    renderReactTree(state)
+    renderReactTree()
 }
 
 
 export let updateNewPost=(newText:string)=>{
     state.ProfilePage.newPostText=newText
-    renderReactTree(state)
+    renderReactTree()
 
 }
 
 export let updateNewMessage=(newText:string)=>{
     state.dialogsPage.newMessageText=newText
-    renderReactTree(state)
+    renderReactTree()
 }

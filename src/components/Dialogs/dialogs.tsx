@@ -25,7 +25,9 @@ let messageElement=props.data.messageData.map(message=><Message  id={message.id}
     const addNewMessage=()=>{
         if(newMessageElement.current){
             props.addNewMessage(newMessageElement.current.value)
+
         }
+        props.updateNewMessage('')
     }
 
     return(

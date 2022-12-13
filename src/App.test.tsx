@@ -5,7 +5,9 @@ import {addMessage, state, updateNewMessage, updateNewPost} from "./components/S
 import {addPost} from "./components/State/State";
 
 test('renders learn react link', () => {
-    render(<App postsData={state.ProfilePage.posts} addPost={addPost}
+    render(<App
+        postsData={state.ProfilePage.posts}
+        addPost={addPost}
                 updateNewPostText={updateNewPost}
                 addMessage={addMessage}
                 updateNewMessage={updateNewMessage}

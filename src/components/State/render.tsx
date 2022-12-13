@@ -1,11 +1,13 @@
-import ReactDOM from "react-dom/client";
 import React from "react";
-import App from "./App";
-import {addMessage, addPost, state, StateProps, updateNewMessage, updateNewPost} from "./components/State/State";
+import App from "../../App";
+import {addMessage, addPost, state, updateNewMessage, updateNewPost} from "./State";
+import ReactDOM from "react-dom/client";
+
+
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
-export let renderReactTree=(state:StateProps)=>{
+export let renderReactTree=()=>{
 
     root.render(
         <React.StrictMode>
