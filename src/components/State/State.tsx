@@ -25,65 +25,75 @@ type ProfilePageType={
 }
 
 
-export let state: StateProps = {
-    'dialogsPage': {
-        'newMessageText':'',
+export type StoreType={
+    _state:StateProps,
+    updateNewMessage:(newText:string)=>void,
+    updateNewPost:(newText:string)=>void,
+    addPost:(text:string)=>void,
+    addMessage:(text:string)=>void,
+    getState:()=>StateProps,
 
-        "dialogsData": [
-            {id: 1, name: "Sasha"},
-            {id: 2, name: "Dina"},
-            {id: 3, name: "Vladimir"},
-            {id: 4, name: "Egor"},
+}
 
-        ],
-        'messageData': [
-            {id: 1, message: 'Hello'},
-            {id: 2, message: 'How are you?'},
-            {id: 3, message: 'Whats the weather like today?'}
+const store={
+    _state:{
+        dialogsPage: {
+            'newMessageText':'',
 
-        ]
-    },
-    ProfilePage: {
-        'newPostText': '',
+            "dialogsData": [
+                {id: 1, name: "Sasha"},
+                {id: 2, name: "Dina"},
+                {id: 3, name: "Vladimir"},
+                {id: 4, name: "Egor"},
 
-        'posts':
-            [
-                {id: 1, message: 'My first post', likesCount: 12},
-                {id: 1, message: 'Im Okay', likesCount: 11},
-                {id: 3, message: 'im learning js', likesCount: 1}
+            ],
+            'messageData': [
+                {id: 1, message: 'Hello'},
+                {id: 2, message: 'How are you?'},
+                {id: 3, message: 'Whats the weather like today?'}
+
             ]
-    }
+        },
+        ProfilePage: {
+            'newPostText': '',
+
+            'posts':
+                [
+                    {id: 1, message: 'My first post', likesCount: 12},
+                    {id: 1, message: 'Im Okay', likesCount: 11},
+                    {id: 3, message: 'im learning js', likesCount: 1}
+                ]
+        }
+    },
+    updateNewMessage(newText:string) {
+        this._state.dialogsPage.newMessageText=newText
+        renderReactTree()},
+    updateNewPost(newText:string){
+        this._state.ProfilePage.newPostText=newText
+        renderReactTree()
+    },
+    addPost  (text: string){
+        const newPost: PostsDataType = {
+            id: new Date().getTime(),
+            message: text,
+            likesCount: 0
+        }
+        this._state.ProfilePage.posts.push(newPost)
+        renderReactTree()
+    },
+    addMessage(text:string){
+        const newMessage:MessagePropsType={
+            id:new Date().getTime(),
+            message:text
+        }
+        this._state.dialogsPage.messageData.push(newMessage)
+        renderReactTree()
+
+    },
+getState(){
+        return this._state
 }
 
-export let addMessage=(text:string)=>{
-    const newMessage:MessagePropsType={
-        id:new Date().getTime(),
-        message:text
-    }
-    state.dialogsPage.messageData.push(newMessage)
-    renderReactTree()
-
 }
 
-
-export let addPost = (text: string) => {
-    const newPost: PostsDataType = {
-        id: new Date().getTime(),
-        message: text,
-        likesCount: 0
-    }
-    state.ProfilePage.posts.push(newPost)
-    renderReactTree()
-}
-
-
-export let updateNewPost=(newText:string)=>{
-    state.ProfilePage.newPostText=newText
-    renderReactTree()
-
-}
-
-export let updateNewMessage=(newText:string)=>{
-    state.dialogsPage.newMessageText=newText
-    renderReactTree()
-}
+export default store

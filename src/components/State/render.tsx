@@ -1,6 +1,6 @@
 import React from "react";
 import App from "../../App";
-import {addMessage, addPost, state, updateNewMessage, updateNewPost} from "./State";
+import store from "./State";
 import ReactDOM from "react-dom/client";
 
 
@@ -11,12 +11,7 @@ export let renderReactTree=()=>{
 
     root.render(
         <React.StrictMode>
-            <App postsData={state.ProfilePage.posts}
-                 dialogsData={state.dialogsPage}
-                 addPost={addPost}
-                 updateNewPostText={updateNewPost}
-                 addMessage={addMessage}
-                 updateNewMessage={updateNewMessage}
+            <App store={store}
             />
         </React.StrictMode>
     );

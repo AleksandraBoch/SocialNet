@@ -6,20 +6,16 @@ import {Profile} from "./components/Profile/Profile";
 import {Dialogs} from "./components/Dialogs/dialogs";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {News} from "./components/news/news";
-import {PostsDataType} from "./components/Profile/MyPosts/MyPosts";
-import {addMessage, DialogsPageProps} from "./components/State/State";
+import {StoreType} from "./components/State/State";
 
 
 export type AppPropsType = {
-    postsData: Array<PostsDataType>
-    dialogsData: DialogsPageProps
-    addPost:(text:string)=>void
-    updateNewPostText:(newPostText:string)=>void
-    addMessage:(text:string)=>void
-    updateNewMessage:(newText:string)=>void
+    store: StoreType
 }
 
-function App(props: AppPropsType) {
+const App: React.FC<AppPropsType> = (props) => {
+    const state = props.store.getState();
+
 
     return (
         <div className={'app-wrapper'}>
@@ -29,17 +25,16 @@ function App(props: AppPropsType) {
                 <div className={'app-wrapper-content'}>
                     <Routes>
                         <Route path={'/profile'} element={<Profile
-                            postsData={props.postsData}
-                            updateNewPostText={props.updateNewPostText}
-
-                        addPost={props.addPost}
+                            postsData={props.store._state.ProfilePage.posts}
+                            updateNewPostText={props.store.updateNewPost}
+                            addPost={props.store.addPost}
                         />}/>
 
 
                         <Route path={'/dialogs/*'} element={<Dialogs
-                            updateNewMessage={props.updateNewMessage}
-                            addNewMessage={props.addMessage}
-                            data={props.dialogsData}/>}/>
+                            updateNewMessage={props.store.updateNewMessage}
+                            addNewMessage={props.store.addMessage}
+                            data={props.store._state.dialogsPage}/>}/>
                         <Route path={'/news'} element={<News/>}/>
                     </Routes>
 
