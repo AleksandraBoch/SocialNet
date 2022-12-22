@@ -32,9 +32,22 @@ export type StoreType={
     addPost:(text:string)=>void,
     addMessage:(text:string)=>void,
     getState:()=>StateProps,
+    dispatch:(action:ActionsTypes)=>void
 
 }
 
+export type ActionsTypes= AddPostActionType|ChangeNewPostType
+
+
+export type AddPostActionType={
+    type:'ADD-POST',
+    text:string
+
+}
+export type ChangeNewPostType={
+    type:'CHANGE-NEW-POST',
+    newText:string
+}
 const store={
     _state:{
         dialogsPage: {
@@ -92,8 +105,25 @@ const store={
     },
 getState(){
         return this._state
+},
+    dispatch(action){
+if (action.type==='ADD-POST'){
+    const newPost: PostsDataType = {
+        id: new Date().getTime(),
+        message: action.text,
+        likesCount: 0
+    }
+    this._state.ProfilePage.posts.push(newPost)
+    renderReactTree()
+}else if (action.type==='CHANGE-NEW-POST'){
+    this._state.ProfilePage.newPostText=action.newText
+    renderReactTree()
 }
+    }
+
 
 }
 
-export default store
+
+
+export default store;

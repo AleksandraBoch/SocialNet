@@ -6,11 +6,12 @@ import {Profile} from "./components/Profile/Profile";
 import {Dialogs} from "./components/Dialogs/dialogs";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {News} from "./components/news/news";
-import {StoreType} from "./components/State/State";
+import {ActionsTypes, StoreType} from "./components/State/State";
 
 
 export type AppPropsType = {
     store: StoreType
+    dispatch:(action:ActionsTypes)=>void
 }
 
 const App: React.FC<AppPropsType> = (props) => {
@@ -28,6 +29,7 @@ const App: React.FC<AppPropsType> = (props) => {
                             postsData={props.store._state.ProfilePage.posts}
                             updateNewPostText={props.store.updateNewPost}
                             addPost={props.store.addPost}
+                            dispatch={props.store.dispatch.bind(props.store)}
                         />}/>
 
 
