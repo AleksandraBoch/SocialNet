@@ -4,6 +4,8 @@ import {MessagePropsType} from "../Dialogs/Message/message";
 import {DialogsItemProps} from "../Dialogs/DialogItem/dialogItem";
 import {renderReactTree} from "./render";
 
+let ADD_POST='ADD-POST'
+let CHANGE_NEW_POST='CHANGE-NEW-POST'
 
 export type DialogsPageProps = {
     newMessageText: string,
@@ -24,7 +26,6 @@ type ProfilePageType = {
 
 }
 
-
 export type StoreType = {
     _state: StateProps,
     updateNewMessage: (newText: string) => void,
@@ -39,7 +40,7 @@ export type ActionsTypes = AddPostActionType | ChangeNewPostType
 
 export type AddPostActionType = {
     type: 'ADD-POST',
-    text: string
+    postText: string
 
 }
 export type ChangeNewPostType = {
@@ -96,7 +97,7 @@ const store = {
         if (action.type === 'ADD-POST') {
             const newPost: PostsDataType = {
                 id: new Date().getTime(),
-                message: action.text,
+                message: action.postText,
                 likesCount: 0
             }
             this._state.profilePage.posts.push(newPost)
@@ -111,6 +112,19 @@ const store = {
 
 
 }
+export let addPostActionCreator=(postText:string):AddPostActionType=>{
+    return{
+        type:"ADD-POST",
+        postText:postText
+    }
+}
 
+export let changePostActionCreator=(text:string):ChangeNewPostType=>{
+
+    return {
+        type:"CHANGE-NEW-POST",
+        newPostText: text
+    }
+}
 
 export default store;

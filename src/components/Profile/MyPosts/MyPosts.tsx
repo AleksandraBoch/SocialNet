@@ -1,7 +1,7 @@
 import React, {ChangeEvent} from "react";
 import s from './MyPosts.module.css'
 import {Post} from "./Post/Post";
-import {ActionsTypes} from "../../State/State";
+import {ActionsTypes, addPostActionCreator, changePostActionCreator} from "../../State/State";
 
 export type PostsDataType = {
     id: number
@@ -16,7 +16,6 @@ export type PostPropsType = {
 }
 
 export const MyPosts = (props:PostPropsType) => {
-console.log('111---', props.newPostText)
     let postElement = props.postsData.
     map(post => <Post message={post.message} likeCount={post.likesCount}/>)
 
@@ -26,14 +25,14 @@ const addPost=()=>{
     // if(newPostElement.current){
     //     props.addPost(newPostElement.current.value)
     // }
-    props.dispatch({type:'ADD-POST',text:props.newPostText})
+    props.dispatch(addPostActionCreator(props.newPostText))
 }
 
 let onPostChange=(e:ChangeEvent<HTMLTextAreaElement>)=>{
     //     let text=newPostElement.current&&newPostElement.current.value
     // props.updateNewPost('newText')
-    // console.log(e.currentTarget.value)
-    props.dispatch({type:'CHANGE-NEW-POST',newPostText:e.currentTarget.value})
+    // console.log(newPostText:e.currentTarget.value)
+    props.dispatch(changePostActionCreator(e.currentTarget.value))
 
 }
     // const onChangeHandler=(e:ChangeEvent<HTMLTextAreaElement>)=>{props.updateNewPost(e.currentTarget.value)}
