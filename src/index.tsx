@@ -1,9 +1,8 @@
 import React from 'react';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-
 import {renderReactTree} from "./components/State/render";
-import store from "./components/State/State";
+
 
 renderReactTree()
 

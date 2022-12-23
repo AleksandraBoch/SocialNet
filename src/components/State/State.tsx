@@ -6,7 +6,7 @@ import {renderReactTree} from "./render";
 
 
 export type DialogsPageProps = {
-    newMessageText:string,
+    newMessageText: string,
     dialogsData: Array<DialogsItemProps>
     messageData: Array<MessagePropsType>
 }
@@ -14,44 +14,42 @@ export type DialogsPageProps = {
 
 export type StateProps = {
     dialogsPage: DialogsPageProps
-    ProfilePage:ProfilePageType
+    profilePage: ProfilePageType
 
 }
 
-type ProfilePageType={
-    newPostText:string
-    posts:Array<PostsDataType>
+type ProfilePageType = {
+    newPostText: string
+    posts: Array<PostsDataType>
 
 }
 
 
-export type StoreType={
-    _state:StateProps,
-    updateNewMessage:(newText:string)=>void,
-    updateNewPost:(newText:string)=>void,
-    addPost:(text:string)=>void,
-    addMessage:(text:string)=>void,
-    getState:()=>StateProps,
-    dispatch:(action:ActionsTypes)=>void
+export type StoreType = {
+    _state: StateProps,
+    updateNewMessage: (newText: string) => void,
+    addMessage: (text: string) => void,
+    getState: () => StateProps,
+    dispatch: (action: ActionsTypes) => void
 
 }
 
-export type ActionsTypes= AddPostActionType|ChangeNewPostType
+export type ActionsTypes = AddPostActionType | ChangeNewPostType
 
 
-export type AddPostActionType={
-    type:'ADD-POST',
-    text:string
+export type AddPostActionType = {
+    type: 'ADD-POST',
+    text: string
 
 }
-export type ChangeNewPostType={
-    type:'CHANGE-NEW-POST',
-    newText:string
+export type ChangeNewPostType = {
+    type: 'CHANGE-NEW-POST',
+    newPostText: string
 }
-const store={
-    _state:{
+const store = {
+    _state: {
         dialogsPage: {
-            'newMessageText':'',
+            'newMessageText': '',
 
             "dialogsData": [
                 {id: 1, name: "Sasha"},
@@ -67,7 +65,7 @@ const store={
 
             ]
         },
-        ProfilePage: {
+        profilePage: {
             'newPostText': '',
 
             'posts':
@@ -78,52 +76,41 @@ const store={
                 ]
         }
     },
-    updateNewMessage(newText:string) {
-        this._state.dialogsPage.newMessageText=newText
-        renderReactTree()},
-    updateNewPost(newText:string){
-        this._state.ProfilePage.newPostText=newText
+    updateNewMessage(newText: string) {
+        this._state.dialogsPage.newMessageText = newText
         renderReactTree()
     },
-    addPost  (text: string){
-        const newPost: PostsDataType = {
+    addMessage(text: string) {
+        const newMessage: MessagePropsType = {
             id: new Date().getTime(),
-            message: text,
-            likesCount: 0
-        }
-        this._state.ProfilePage.posts.push(newPost)
-        renderReactTree()
-    },
-    addMessage(text:string){
-        const newMessage:MessagePropsType={
-            id:new Date().getTime(),
-            message:text
+            message: text
         }
         this._state.dialogsPage.messageData.push(newMessage)
         renderReactTree()
 
     },
-getState(){
+    getState() {
         return this._state
-},
-    dispatch(action){
-if (action.type==='ADD-POST'){
-    const newPost: PostsDataType = {
-        id: new Date().getTime(),
-        message: action.text,
-        likesCount: 0
+    },
+    dispatch(action: ActionsTypes) {
+        if (action.type === 'ADD-POST') {
+            const newPost: PostsDataType = {
+                id: new Date().getTime(),
+                message: action.text,
+                likesCount: 0
+            }
+            this._state.profilePage.posts.push(newPost)
+            this._state.profilePage.newPostText = ' '
+            renderReactTree()
+        } else if (action.type === 'CHANGE-NEW-POST') {
+
+            this._state.profilePage.newPostText = action.newPostText;
+            renderReactTree()
+        }
     }
-    this._state.ProfilePage.posts.push(newPost)
-    renderReactTree()
-}else if (action.type==='CHANGE-NEW-POST'){
-    this._state.ProfilePage.newPostText=action.newText
-    renderReactTree()
-}
-    }
 
 
 }
-
 
 
 export default store;

@@ -8,11 +8,11 @@ const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
 export let renderReactTree=()=>{
-
     root.render(
-        <React.StrictMode>
+
             <App store={store}
+                 dispatch={store.dispatch.bind(store)}
             />
-        </React.StrictMode>
+
     );
 }

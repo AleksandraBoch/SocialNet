@@ -4,24 +4,25 @@ import {ProfileInfo} from "./ProfileInfo";
 import {ActionsTypes} from "../State/State";
 
 type ProfilePropsType={
-    postsData: Array<PostsDataType>
-    addPost:(text:string)=>void
-    updateNewPostText:(newPostText:string)=>void
+    profilePage: {
+        newPostText:string,
+        posts: Array<PostsDataType>
+    }
     dispatch:(action:ActionsTypes)=>void
+
 }
 
 export const Profile = (props:ProfilePropsType) => {
 
-
+    // console.log('111---222---333', props.profilePage.newPostText)
 
     return (
 
         <div>
           <ProfileInfo/>
-            <MyPosts postsData={props.postsData}
-
-                     updateNewPost={props.updateNewPostText}
-            addPost={props.addPost}/>
+            <MyPosts postsData={props.profilePage.posts}
+                     newPostText={props.profilePage.newPostText}
+            dispatch={props.dispatch}/>
 
 
         </div>
