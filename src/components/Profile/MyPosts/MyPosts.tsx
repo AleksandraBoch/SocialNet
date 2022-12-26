@@ -10,31 +10,30 @@ export type PostsDataType = {
 
 }
 export type PostPropsType = {
-    newPostText:string,
+    newPostText: string,
     postsData: Array<PostsDataType>
-    dispatch:(action:ActionsTypes)=>void
+    dispatch: (action: ActionsTypes) => void
 }
 
-export const MyPosts = (props:PostPropsType) => {
-    let postElement = props.postsData.
-    map(post => <Post message={post.message} likeCount={post.likesCount}/>)
+export const MyPosts = (props: PostPropsType) => {
+    let postElement = props.postsData.map(post => <Post message={post.message} likeCount={post.likesCount}/>)
 
-    let newPostElement=React.createRef<HTMLTextAreaElement>()
+    let newPostElement = React.createRef<HTMLTextAreaElement>()
 
-const addPost=()=>{
-    // if(newPostElement.current){
-    //     props.addPost(newPostElement.current.value)
-    // }
-    props.dispatch(addPostActionCreator(props.newPostText))
-}
+    const addPost = () => {
+        // if(newPostElement.current){
+        //     props.addPost(newPostElement.current.value)
+        // }
+        props.dispatch(addPostActionCreator(props.newPostText))
+    }
 
-let onPostChange=(e:ChangeEvent<HTMLTextAreaElement>)=>{
-    //     let text=newPostElement.current&&newPostElement.current.value
-    // props.updateNewPost('newText')
-    // console.log(newPostText:e.currentTarget.value)
-    props.dispatch(changePostActionCreator(e.currentTarget.value))
+    let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        //     let text=newPostElement.current&&newPostElement.current.value
+        // props.updateNewPost('newText')
+        // console.log(newPostText:e.currentTarget.value)
+        props.dispatch(changePostActionCreator(e.currentTarget.value))
 
-}
+    }
     // const onChangeHandler=(e:ChangeEvent<HTMLTextAreaElement>)=>{props.updateNewPost(e.currentTarget.value)}
     return (
         <div className={s.postsBlock}>
@@ -44,7 +43,7 @@ let onPostChange=(e:ChangeEvent<HTMLTextAreaElement>)=>{
                 <div>
                     <textarea ref={newPostElement}
                               onChange={onPostChange}
-                   // value={props.newPostText}
+                        // value={props.newPostText}
                     />
                 </div>
                 <div>

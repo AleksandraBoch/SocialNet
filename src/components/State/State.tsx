@@ -9,13 +9,13 @@ let CHANGE_NEW_POST = 'CHANGE-NEW-POST'
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY'
 const ADD_MESSAGE = 'ADD-MESSAGE'
 
-export type DialogsPageProps = {
+export type DialogsPageType = {
     newMessageText: string,
     dialogsData: Array<DialogsItemProps>
     messageData: Array<MessagePropsType>
 }
 export type StateProps = {
-    dialogsPage: DialogsPageProps
+    dialogsPage: DialogsPageType
     profilePage: ProfilePageType
 
 }
@@ -51,22 +51,26 @@ export type ChangeNewPostType = {
     type: 'CHANGE-NEW-POST',
     newPostText: string
 }
+export type ChangeNewMessageTextTyep = {
+    type: 'UPDATE-NEW-MESSAGE-BODY',
+    newMessageText: string
+}
 const store = {
     _state: {
         dialogsPage: {
             'newMessageText': '',
 
             "dialogsData": [
-                {id: 1, name: "Sasha"},
-                {id: 2, name: "Dina"},
-                {id: 3, name: "Vladimir"},
-                {id: 4, name: "Egor"},
+                {id: 11, name: "Sasha"},
+                {id: 12, name: "Dina"},
+                {id: 13, name: "Vladimir"},
+                {id: 14, name: "Egor"},
 
             ],
             'messageData': [
-                {id: 1, message: 'Hello'},
-                {id: 2, message: 'How are you?'},
-                {id: 3, message: 'Whats the weather like today?'}
+                {id: 21, message: 'Hello'},
+                {id: 22, message: 'How are you?'},
+                {id: 23, message: 'Whats the weather like today?'}
 
             ]
         },
@@ -108,7 +112,7 @@ const store = {
 
             this._state.profilePage.newPostText = action.newPostText;
             renderReactTree()
-        } else if (action.type == UPDATE_NEW_MESSAGE_BODY) {
+        } else if (action.type === UPDATE_NEW_MESSAGE_BODY) {
             this._state.dialogsPage.newMessageText = action.newMessageText
             renderReactTree()
         } else if (action.type === ADD_MESSAGE) {
@@ -119,7 +123,9 @@ const store = {
                 id: new Date().getTime(),
                 message:action.newMessage
             }
+
             this._state.dialogsPage.messageData.push(newMessage)
+            this._state.dialogsPage.newMessageText=''
 
             renderReactTree()
         }
@@ -138,7 +144,7 @@ export let addMessageAC = (newMessage: string): AddMessageType => {
     return {
 
         type: "ADD-MESSAGE",
-        newMessage: "",
+        newMessage,
 
     }
 }
@@ -150,6 +156,16 @@ export let changePostActionCreator = (text: string): ChangeNewPostType => {
         newPostText: text
     }
 }
+export let changeMessageTextActionCreator = (text: string): ChangeNewMessageTextTyep => {
+
+    return {
+        type: 'UPDATE-NEW-MESSAGE-BODY',
+        newMessageText: text
+    }
+}
 
 
 export default store;
+
+//@ts-ignore
+window.store = store
