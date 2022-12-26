@@ -14,7 +14,6 @@ type ProfilePropsType={
 
 export const Profile = (props:ProfilePropsType) => {
 
-    // console.log('111---222---333', props.profilePage.newPostText)
 
     return (
 

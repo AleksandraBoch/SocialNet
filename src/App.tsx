@@ -6,7 +6,7 @@ import {Profile} from "./components/Profile/Profile";
 import {Dialogs} from "./components/Dialogs/dialogs";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {News} from "./components/news/news";
-import store, {ActionsTypes, StoreType} from "./components/State/State";
+import  {ActionsTypes, StoreType} from "./components/State/State";
 
 
 export type AppPropsType = {
@@ -17,7 +17,6 @@ export type AppPropsType = {
 const App: React.FC<AppPropsType> = (props) => {
     const state = props.store.getState();
 
-    console.log('111---222', props.store._state.profilePage.newPostText)
     return (
         <div className={'app-wrapper'}>
             <BrowserRouter>
@@ -32,9 +31,12 @@ const App: React.FC<AppPropsType> = (props) => {
 
 
                         <Route path={'/dialogs/*'} element={<Dialogs
-                            updateNewMessage={props.store.updateNewMessage}
-                            addNewMessage={props.store.addMessage}
-                            data={props.store._state.dialogsPage}/>}/>
+
+                            dispatch={props.dispatch}
+                            dialogsPage={props.store._state.dialogsPage}
+                            />}/>
+
+
                         <Route path={'/news'} element={<News/>}/>
                     </Routes>
 
