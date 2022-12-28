@@ -1,12 +1,12 @@
 import React from "react";
 import {MessagePropsType} from "../Dialogs/Message/message";
-import {ChangeNewMessageTextTyep, ChangeNewPostType} from "./State";
+import {ActionsTypes, ChangeNewMessageTextTyep, ChangeNewPostType, DialogsPageType} from "./State";
 
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY'
 const ADD_MESSAGE = 'ADD-MESSAGE'
 
 
-export const dialogsReducer=(state,action)=>{
+export const dialogsReducer=(state:DialogsPageType,action:ActionsTypes)=>{
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_BODY:
             state.newMessageText = action.newMessageText

@@ -4,11 +4,10 @@ import {DialogItem, DialogsItemProps} from "./DialogItem/dialogItem";
 import {Message, MessagePropsType} from "./Message/message";
 import {
     ActionsTypes,
-    addMessageAC,
     changeMessageTextActionCreator,
-    changePostActionCreator,
     DialogsPageType
 } from "../State/State";
+import {addMessageAC} from "../State/profileReducer";
 
 export type DialogsProps = {
     dialogsPage: DialogsPageType,

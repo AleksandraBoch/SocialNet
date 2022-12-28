@@ -1,11 +1,11 @@
 import React from "react";
 import {PostsDataType} from "../Profile/MyPosts/MyPosts";
-import {ActionsTypes, AddMessageType, AddPostActionType, ChangeNewPostType, StateProps} from "./State";
+import {ActionsTypes, AddMessageType, AddPostActionType, ChangeNewPostType, ProfilePageType, StateProps} from "./State";
 
 
 
 
-export const profileReducer=(state:,action:ActionsTypes)=> {
+export const profileReducer=(state:ProfilePageType,action:ActionsTypes)=> {
     switch (action.type) {
         case 'ADD-POST':
             const newPost: PostsDataType = {

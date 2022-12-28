@@ -1,7 +1,8 @@
 import React, {ChangeEvent} from "react";
 import s from './MyPosts.module.css'
 import {Post} from "./Post/Post";
-import {ActionsTypes, addPostActionCreator, changePostActionCreator} from "../../State/State";
+import {ActionsTypes, changePostActionCreator} from "../../State/State";
+import {addPostActionCreator} from "../../State/profileReducer";
 
 export type PostsDataType = {
     id: number
