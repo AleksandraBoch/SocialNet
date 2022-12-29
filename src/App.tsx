@@ -7,6 +7,7 @@ import {Dialogs} from "./components/Dialogs/dialogs";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {News} from "./components/news/news";
 import {ActionsTypes, StoreType} from "./components/State/State";
+import store from "./components/State/redux-store";
 
 
 export type AppPropsType = {
@@ -24,13 +25,13 @@ const App: React.FC<AppPropsType> = (props) => {
                 <div className={'app-wrapper-content'}>
                     <Routes>
                         <Route path={'/profile'} element={<Profile
-                            profilePage={props.store._state.profilePage}
+                            profilePage={store.profilePage}
                             dispatch={props.dispatch}
                         />}/>
 
                         <Route path={'/dialogs/*'} element={<Dialogs
                             dispatch={props.dispatch}
-                            dialogsPage={props.store._state.dialogsPage}
+                            dialogsPage={props.store.dialogsPage}
                         />}/>
 
 

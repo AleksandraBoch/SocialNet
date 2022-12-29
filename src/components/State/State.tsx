@@ -6,19 +6,13 @@ import {renderReactTree} from "./render";
 import {profileReducer} from "./profileReducer";
 import {dialogsReducer} from "./dialogsReduser";
 
-// let ADD_POST = 'ADD-POST'
-// let CHANGE_NEW_POST = 'CHANGE-NEW-POST'
-// const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY'
-// const ADD_MESSAGE = 'ADD-MESSAGE'
-
 export type DialogsPageType = {
     newMessageText: string,
     dialogsData: Array<DialogsItemProps>
     messageData: Array<MessagePropsType>
 }
 export type StateProps = {
-    dialogsPage: DialogsPageType
-    profilePage: ProfilePageType
+
 
 }
 export type ProfilePageType = {
@@ -27,9 +21,9 @@ export type ProfilePageType = {
 
 }
 export type StoreType = {
-    _state: StateProps,
-    // updateNewMessage: (newText: string) => void,
-    // addMessage: (text: string) => void,
+    dialogsPage: DialogsPageType
+    profilePage: ProfilePageType
+    // _state: StateProps,
     getState: () => StateProps,
     dispatch: (action: ActionsTypes) => void
 
@@ -96,57 +90,11 @@ const store = {
         this._state.dialogsPage=dialogsReducer(this._state.dialogsPage,action)
 
         renderReactTree()
-        //
-        // if (action.type === 'ADD-POST') {
-        //     const newPost: PostsDataType = {
-        //         id: new Date().getTime(),
-        //         message: action.postText,
-        //         likesCount: 0
-        //     }
-        //     this._state.profilePage.posts.push(newPost)
-        //     this._state.profilePage.newPostText = ' '
-        //     renderReactTree()
-        //
-        // } else if (action.type === 'CHANGE-NEW-POST') {
-        //
-        //     this._state.profilePage.newPostText = action.newPostText;
-        //     renderReactTree()
-        // } else if (action.type === UPDATE_NEW_MESSAGE_BODY) {
-        //     this._state.dialogsPage.newMessageText = action.newMessageText
-        //     renderReactTree()
-        // } else if (action.type === ADD_MESSAGE) {
-        //     // let body = this._state.dialogsPage.newMessageText;
-        //     // this._state.dialogsPage.newMessageText = ' '
-        //     // this._state.dialogsPage.messageData.push({id: 6, message: body})
-        //     let newMessage:MessagePropsType={
-        //         id: new Date().getTime(),
-        //         message:action.newMessage
-        //     }
-        //
-        //     this._state.dialogsPage.messageData.push(newMessage)
-        //     this._state.dialogsPage.newMessageText=''
-        //
-        //     renderReactTree()
-        // }
+
     }
 
 
 }
-// export let addPostActionCreator = (postText: string): AddPostActionType => {
-//     return {
-//         type: "ADD-POST",
-//         postText: postText
-//     }
-// }
-//
-// export let addMessageAC = (newMessage: string): AddMessageType => {
-//     return {
-//
-//         type: "ADD-MESSAGE",
-//         newMessage,
-//
-//     }
-// }
 
 export let changePostActionCreator = (text: string): ChangeNewPostType => {
 
@@ -165,6 +113,3 @@ export let changeMessageTextActionCreator = (text: string): ChangeNewMessageText
 
 
 export default store;
-
-//@ts-ignore
-window.store = store

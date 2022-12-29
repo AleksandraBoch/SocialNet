@@ -5,8 +5,25 @@ import {ActionsTypes, ChangeNewMessageTextTyep, ChangeNewPostType, DialogsPageTy
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY'
 const ADD_MESSAGE = 'ADD-MESSAGE'
 
+let initialState={
+    'newMessageText': '',
 
-export const dialogsReducer=(state:DialogsPageType,action:ActionsTypes)=>{
+    "dialogsData": [
+        {id: 11, name: "Sasha"},
+        {id: 12, name: "Dina"},
+        {id: 13, name: "Vladimir"},
+        {id: 14, name: "Egor"},
+
+    ],
+    'messageData': [
+        {id: 21, message: 'Hello'},
+        {id: 22, message: 'How are you?'},
+        {id: 23, message: 'Whats the weather like today?'}
+
+    ]
+}
+
+export const dialogsReducer=(state=initialState,action:ActionsTypes)=>{
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_BODY:
             state.newMessageText = action.newMessageText
