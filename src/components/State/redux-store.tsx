@@ -5,6 +5,7 @@ import {dialogsReducer} from "./dialogsReduser";
 
 export type AppStateType = ReturnType<typeof rootReducer>
 export type ReduxStoreType=typeof store;
+
 let rootReducer=combineReducers(
     {
         profilePage:profileReducer,

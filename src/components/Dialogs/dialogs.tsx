@@ -2,12 +2,10 @@ import React, {ChangeEvent} from "react";
 import s from './Dialogs.module.css'
 import {DialogItem, DialogsItemProps} from "./DialogItem/dialogItem";
 import {Message, MessagePropsType} from "./Message/message";
-import {
-    ActionsTypes,
-    changeMessageTextActionCreator,
-    DialogsPageType
-} from "../State/State";
-import {addMessageAC} from "../State/profileReducer";
+import {changeMessageTextActionCreator,
+} from "../State/dialogsReduser";
+import {addMessageAC} from "../State/dialogsReduser";
+import {ActionsTypes, DialogsPageType} from "../State/State";
 
 export type DialogsProps = {
     dialogsPage: DialogsPageType,

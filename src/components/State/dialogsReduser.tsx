@@ -1,9 +1,22 @@
 import React from "react";
 import {MessagePropsType} from "../Dialogs/Message/message";
-import {ActionsTypes, ChangeNewMessageTextTyep, ChangeNewPostType, DialogsPageType} from "./State";
+import {ActionsTypes, AddMessageType, ChangeNewMessageTextTyep, ChangeNewPostType, DialogsPageType} from "./State";
 
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY'
 const ADD_MESSAGE = 'ADD-MESSAGE'
+
+type DialogsReducerType={
+    newMessageText:string,
+    dialogsData:{
+        id:number,
+        name:string
+    }[]
+    messageData:{
+        id:number,
+        message:string
+    }[]
+
+}
 
 let initialState={
     'newMessageText': '',
@@ -23,9 +36,10 @@ let initialState={
     ]
 }
 
-export const dialogsReducer=(state=initialState,action:ActionsTypes)=>{
+export const dialogsReducer=(state: DialogsReducerType=initialState,action:ActionsTypes)=>{
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_BODY:
+
             state.newMessageText = action.newMessageText
             return state
             break;
@@ -45,15 +59,17 @@ export const dialogsReducer=(state=initialState,action:ActionsTypes)=>{
     return state
 }
 
-export let changePostActionCreator = (text: string): ChangeNewPostType => {
-
+export let addMessageAC = (newMessage: string): AddMessageType => {
     return {
-        type: "CHANGE-NEW-POST",
-        newPostText: text
+
+        type: "ADD-MESSAGE",
+        newMessage,
+
     }
 }
-export let changeMessageTextActionCreator = (text: string): ChangeNewMessageTextTyep => {
 
+export let changeMessageTextActionCreator = (text: string): ChangeNewMessageTextTyep => {
+    // console.log('text', text)
     return {
         type: 'UPDATE-NEW-MESSAGE-BODY',
         newMessageText: text

@@ -7,16 +7,19 @@ import {Dialogs} from "./components/Dialogs/dialogs";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {News} from "./components/news/news";
 import {ActionsTypes, StoreType} from "./components/State/State";
-import store from "./components/State/redux-store";
+import store, {AppStateType} from "./components/State/redux-store";
+import {useSelector} from "react-redux";
 
 
 export type AppPropsType = {
-    store: StoreType,
+    store: AppStateType,
+    // store: StoreType,
     dispatch: (action: ActionsTypes) => void
 }
 
 const App: React.FC<AppPropsType> = (props) => {
-
+    // const state = useSelector((state)=>state)
+    // console.log('state', state)
     return (
         <div className={'app-wrapper'}>
             <BrowserRouter>
@@ -25,7 +28,7 @@ const App: React.FC<AppPropsType> = (props) => {
                 <div className={'app-wrapper-content'}>
                     <Routes>
                         <Route path={'/profile'} element={<Profile
-                            profilePage={store.profilePage}
+                            profilePage={props.store.profilePage}
                             dispatch={props.dispatch}
                         />}/>
 
@@ -39,7 +42,6 @@ const App: React.FC<AppPropsType> = (props) => {
                     </Routes>
 
                 </div>
-
             </BrowserRouter>
         </div>
     );
