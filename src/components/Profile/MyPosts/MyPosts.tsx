@@ -17,14 +17,15 @@ export type PostPropsType = {
 }
 
 export const MyPosts = (props: PostPropsType) => {
+    console.log(props.postsData)
     let postElement = props.postsData.map(post => <Post message={post.message} likeCount={post.likesCount}/>)
 
     let newPostElement = React.createRef<HTMLTextAreaElement>()
 
+    console.table(props)
+
     const addPost = () => {
-        // if(newPostElement.current){
-        //     props.addPost(newPostElement.current.value)
-        // }
+        debugger
         props.dispatch(addPostActionCreator(props.newPostText))
     }
 
@@ -35,7 +36,7 @@ export const MyPosts = (props: PostPropsType) => {
         props.dispatch(changePostActionCreator(e.currentTarget.value))
 
     }
-    // const onChangeHandler=(e:ChangeEvent<HTMLTextAreaElement>)=>{props.updateNewPost(e.currentTarget.value)}
+
     return (
         <div className={s.postsBlock}>
 

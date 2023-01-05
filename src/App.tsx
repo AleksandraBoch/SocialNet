@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './App.css';
 import {Header} from "./components/header/header";
 import {NavBar} from "./components/navBar/navBar";
@@ -20,6 +20,9 @@ export type AppPropsType = {
 const App: React.FC<AppPropsType> = (props) => {
     // const state = useSelector((state)=>state)
     // console.log('state', state)
+    useEffect(()=>{
+        console.log(props)
+    },[props])
     return (
         <div className={'app-wrapper'}>
             <BrowserRouter>

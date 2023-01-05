@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {MyPosts, PostsDataType} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo";
 import {ActionsTypes} from "../State/State";
@@ -14,6 +14,9 @@ type ProfilePropsType={
 
 export const Profile = (props:ProfilePropsType) => {
 
+    useEffect(()=>{
+        console.log(props.profilePage)
+    },[props.profilePage])
 
     return (
 

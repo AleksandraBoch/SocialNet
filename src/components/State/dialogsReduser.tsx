@@ -1,6 +1,6 @@
 import React from "react";
 import {MessagePropsType} from "../Dialogs/Message/message";
-import {ActionsTypes, AddMessageType, ChangeNewMessageTextTyep, ChangeNewPostType, DialogsPageType} from "./State";
+import {ActionsTypes, AddMessageType, ChangeNewMessageTextType} from "./State";
 
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY'
 const ADD_MESSAGE = 'ADD-MESSAGE'
@@ -20,7 +20,6 @@ type DialogsReducerType={
 
 let initialState={
     'newMessageText': '',
-
     "dialogsData": [
         {id: 11, name: "Sasha"},
         {id: 12, name: "Dina"},
@@ -60,16 +59,17 @@ export const dialogsReducer=(state: DialogsReducerType=initialState,action:Actio
 }
 
 export let addMessageAC = (newMessage: string): AddMessageType => {
+    console.log('111')
     return {
 
         type: "ADD-MESSAGE",
-        newMessage,
+        newMessage:newMessage,
 
     }
 }
 
-export let changeMessageTextActionCreator = (text: string): ChangeNewMessageTextTyep => {
-    // console.log('text', text)
+export let changeMessageTextActionCreator = (text: string): ChangeNewMessageTextType => {
+   debugger
     return {
         type: 'UPDATE-NEW-MESSAGE-BODY',
         newMessageText: text

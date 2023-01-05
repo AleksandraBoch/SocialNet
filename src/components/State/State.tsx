@@ -3,13 +3,13 @@ import {PostsDataType} from "../Profile/MyPosts/MyPosts";
 import {MessagePropsType} from "../Dialogs/Message/message";
 import {DialogsItemProps} from "../Dialogs/DialogItem/dialogItem";
 import {renderReactTree} from "./render";
-import {profileReducer, ProfileReducerType} from "./profileReducer";
+import {profileReducer} from "./profileReducer";
 import {dialogsReducer} from "./dialogsReduser";
 
-// let ADD_POST = 'ADD-POST'
-// let CHANGE_NEW_POST = 'CHANGE-NEW-POST'
-// const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY'
-// const ADD_MESSAGE = 'ADD-MESSAGE'
+//
+// export const subscribe = (observer: () => void) => {
+//     renderReactTree = observer;
+// }
 
 export type DialogsPageType = {
     newMessageText: string,
@@ -19,9 +19,6 @@ export type DialogsPageType = {
 export type StateProps = {
     dialogsPage: DialogsPageType
     profilePage: ProfilePageType
-    //profilePage:ProfileReducerType
-    //dialogsPage:
-
 }
 export type ProfilePageType = {
     newPostText: string
@@ -54,8 +51,9 @@ export type AddPostActionType = {
 export type ChangeNewPostType = {
     type: 'CHANGE-NEW-POST',
     newPostText: string
+
 }
-export type ChangeNewMessageTextTyep = {
+export type ChangeNewMessageTextType = {
     type: 'UPDATE-NEW-MESSAGE-BODY',
     newMessageText: string
 }
@@ -94,10 +92,10 @@ const store = {
     },
     dispatch(action: ActionsTypes) {
 
-      this._state.profilePage=  profileReducer(this._state.profilePage, action)
-        this._state.dialogsPage=dialogsReducer(this._state.dialogsPage,action)
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
 
-        renderReactTree()
+        // renderReactTree()
         //
         // if (action.type === 'ADD-POST') {
         //     const newPost: PostsDataType = {
