@@ -6,13 +6,14 @@ import {changeMessageTextActionCreator,
 } from "../State/dialogsReduser";
 import {addMessageAC} from "../State/dialogsReduser";
 import {ActionsTypes, DialogsPageType} from "../State/State";
+import {useDispatch} from "react-redux";
 
 export type DialogsProps = {
     dialogsPage: DialogsPageType,
-    dispatch: (action: ActionsTypes) => void,
+    // dispatch: (action: ActionsTypes) => void,
 }
 export const Dialogs = (props: DialogsProps) => {
-
+    const dispatch = useDispatch()
 
     let dialogsElement = props.dialogsPage.dialogsData.map(dialog => <DialogItem key={dialog.id} id={dialog.id}
                                                                                  name={dialog.name}/>)
@@ -31,12 +32,12 @@ export const Dialogs = (props: DialogsProps) => {
         // }
         // props.updateNewMessage('')
 
-        props.dispatch(addMessageAC(props.dialogsPage.newMessageText))
+        dispatch(addMessageAC(props.dialogsPage.newMessageText))
     }
 
     let onNewMessageChange = () => {
         if (newMessageElement.current) {
-            props.dispatch(changeMessageTextActionCreator(newMessageElement.current.value))
+            dispatch(changeMessageTextActionCreator(newMessageElement.current.value))
         }
     }
 

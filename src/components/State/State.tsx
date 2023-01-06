@@ -29,8 +29,8 @@ export type StoreType = {
     state: StateProps,
     // updateNewMessage: (newText: string) => void,
     // addMessage: (text: string) => void,
-    getState: () => StateProps,
-    dispatch: (action: ActionsTypes) => void
+    // getState: () => StateProps,
+    // dispatch: (action: ActionsTypes) => void
 
 }
 export type ActionsTypes = AddPostActionType | ChangeNewPostType | UpdateNewMessageBody | AddMessageType

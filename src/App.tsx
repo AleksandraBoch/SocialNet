@@ -12,17 +12,17 @@ import {useSelector} from "react-redux";
 
 
 export type AppPropsType = {
-    store: AppStateType,
+    // state: AppStateType,
     // store: StoreType,
-    dispatch: (action: ActionsTypes) => void
+    // dispatch: (action: ActionsTypes) => void
 }
 
 const App: React.FC<AppPropsType> = (props) => {
     // const state = useSelector((state)=>state)
     // console.log('state', state)
-    useEffect(()=>{
-        console.log(props)
-    },[props])
+    // useEffect(()=>{
+    //     console.log(props)
+    // },[props])
     return (
         <div className={'app-wrapper'}>
             <BrowserRouter>
@@ -31,14 +31,13 @@ const App: React.FC<AppPropsType> = (props) => {
                 <div className={'app-wrapper-content'}>
                     <Routes>
                         <Route path={'/profile'} element={<Profile
-                            profilePage={props.store.profilePage}
-                            dispatch={props.dispatch}
+                           // store={props.store}
                         />}/>
 
-                        <Route path={'/dialogs/*'} element={<Dialogs
-                            dispatch={props.dispatch}
-                            dialogsPage={props.store.dialogsPage}
-                        />}/>
+                        {/*<Route path={'/dialogs/*'} element={<Dialogs*/}
+                        {/*    // dispatch={props.dispatch}*/}
+                        {/*    // dialogsPage={props.store.getState().dialogsPage}*/}
+                        {/*/>}/>*/}
 
 
                         <Route path={'/news'} element={<News/>}/>

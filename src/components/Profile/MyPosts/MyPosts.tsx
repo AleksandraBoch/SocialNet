@@ -1,8 +1,7 @@
 import React, {ChangeEvent} from "react";
 import s from './MyPosts.module.css'
 import {Post} from "./Post/Post";
-import {ActionsTypes} from "../../State/State";
-import {addPostActionCreator, changePostActionCreator} from "../../State/profileReducer";
+import {ActionsTypes, StoreType} from "../../State/State";
 
 export type PostsDataType = {
     id: number
@@ -11,30 +10,28 @@ export type PostsDataType = {
 
 }
 export type PostPropsType = {
-    newPostText: string,
-    postsData: Array<PostsDataType>
-    dispatch: (action: ActionsTypes) => void
+    // store:StoreType
+    posts: Array<PostsDataType>
+    addPost: (e: string) => void
+    onPostChange: (e: string) => void
+    newPostText: string
 }
 
 export const MyPosts = (props: PostPropsType) => {
-    console.log(props.postsData)
-    let postElement = props.postsData.map(post => <Post message={post.message} likeCount={post.likesCount}/>)
+
+    let postElement = props.posts.map(post => <Post key={post.id} message={post.message} likeCount={post.likesCount}/>)
 
     let newPostElement = React.createRef<HTMLTextAreaElement>()
 
-    console.table(props)
 
     const addPost = () => {
-        debugger
-        props.dispatch(addPostActionCreator(props.newPostText))
+props.addPost(props.newPostText)
+        // props.dispatch(addPostActionCreator(props.newPostText))
     }
 
     let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        //     let text=newPostElement.current&&newPostElement.current.value
-        // props.updateNewPost('newText')
-        // console.log(newPostText:e.currentTarget.value)
-        props.dispatch(changePostActionCreator(e.currentTarget.value))
-
+        let text=newPostElement.current?.value
+        props.onPostChange((e.currentTarget.value))
     }
 
     return (

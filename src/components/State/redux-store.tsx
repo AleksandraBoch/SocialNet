@@ -4,7 +4,8 @@ import {profileReducer} from "./profileReducer";
 import {dialogsReducer} from "./dialogsReduser";
 
 export type AppStateType = ReturnType<typeof rootReducer>
-export type ReduxStoreType=typeof store;
+// export type StoreType = typeof store;
+export type StoreType = ReturnType<typeof rootReducer>;
 
 let rootReducer=combineReducers(
     {
