@@ -9,6 +9,7 @@ import {News} from "./components/news/news";
 import {ActionsTypes, StoreType} from "./components/State/State";
 import store, {AppStateType} from "./components/State/redux-store";
 import {useSelector} from "react-redux";
+import {DialogsContainer} from "./components/Dialogs/dialogsContainer";
 
 
 export type AppPropsType = {
@@ -34,10 +35,10 @@ const App: React.FC<AppPropsType> = (props) => {
                            // store={props.store}
                         />}/>
 
-                        {/*<Route path={'/dialogs/*'} element={<Dialogs*/}
-                        {/*    // dispatch={props.dispatch}*/}
-                        {/*    // dialogsPage={props.store.getState().dialogsPage}*/}
-                        {/*/>}/>*/}
+                        <Route path={'/dialogs/*'} element={<DialogsContainer
+                            // dispatch={props.dispatch}
+                            // dialogsPage={props.store.getState().dialogsPage}
+                        />}/>
 
 
                         <Route path={'/news'} element={<News/>}/>

@@ -1,15 +1,20 @@
-import React, {ChangeEvent} from "react";
+import React from "react";
 import s from './Dialogs.module.css'
 import {DialogItem, DialogsItemProps} from "./DialogItem/dialogItem";
 import {Message, MessagePropsType} from "./Message/message";
 import {changeMessageTextActionCreator,
 } from "../State/dialogsReduser";
 import {addMessageAC} from "../State/dialogsReduser";
-import {ActionsTypes, DialogsPageType} from "../State/State";
+import {DialogsPageType} from "../State/State";
 import {useDispatch} from "react-redux";
+import {PostsDataType} from "../Profile/MyPosts/MyPosts";
 
 export type DialogsProps = {
     dialogsPage: DialogsPageType,
+   // state:DialogsPageType
+    addMessage: (e: string) => void
+    onMessageChange: (e: string) => void
+
     // dispatch: (action: ActionsTypes) => void,
 }
 export const Dialogs = (props: DialogsProps) => {
@@ -20,18 +25,8 @@ export const Dialogs = (props: DialogsProps) => {
 
     let newMessageElement = React.createRef<HTMLTextAreaElement>()
 
-    // let MessageOnChange=()=>{
-    //     let text=newMessageElement.current&&newMessageElement.current.value
-    //     props.updateNewMessage('newText')
-    // }
 
     const addNewMessage = () => {
-        // if(newMessageElement.current){
-        //     props.addNewMessage(newMessageElement.current.value)
-        //
-        // }
-        // props.updateNewMessage('')
-
         dispatch(addMessageAC(props.dialogsPage.newMessageText))
     }
 

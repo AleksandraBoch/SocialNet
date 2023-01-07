@@ -2,7 +2,6 @@ import React from "react";
 import {PostsDataType} from "../Profile/MyPosts/MyPosts";
 import {MessagePropsType} from "../Dialogs/Message/message";
 import {DialogsItemProps} from "../Dialogs/DialogItem/dialogItem";
-import {renderReactTree} from "./render";
 import {profileReducer} from "./profileReducer";
 import {dialogsReducer} from "./dialogsReduser";
 

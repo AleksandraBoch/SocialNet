@@ -4,18 +4,6 @@ import {addPostActionCreator, changePostActionCreator} from "../../State/profile
 import {MyPosts, PostsDataType} from "./MyPosts";
 import {useDispatch} from "react-redux";
 
-// export type PostPropsType = {
-//
-//     newPostText: string,
-//     postsData: Array<PostsDataType>
-//     dispatch: (action: ActionsTypes) => void
-// }
-
-type PostsType = {
-    id: number,
-    message: string,
-    likesCount: number
-}
 
 export type PostPropsType = {
     // store: StoreType
@@ -28,7 +16,7 @@ export const MyPostsContainer = (props: PostPropsType) => {
     // let state = props.store.getState().profilePage
 
     const addPost = () => {
-        debugger
+
       dispatch(addPostActionCreator('newPostText'))
     }
 
