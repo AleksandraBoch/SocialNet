@@ -1,14 +1,12 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import './App.css';
 import {Header} from "./components/header/header";
 import {NavBar} from "./components/navBar/navBar";
 import {Profile} from "./components/Profile/Profile";
-import {Dialogs} from "./components/Dialogs/dialogs";
+
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {News} from "./components/news/news";
-import {ActionsTypes, StoreType} from "./components/State/State";
-import store, {AppStateType} from "./components/State/redux-store";
-import {useSelector} from "react-redux";
+
 import {DialogsContainer} from "./components/Dialogs/dialogsContainer";
 
 
@@ -36,9 +34,11 @@ const App: React.FC<AppPropsType> = (props) => {
                         />}/>
 
                         <Route path={'/dialogs/*'} element={<DialogsContainer
+
+
                             // dispatch={props.dispatch}
                             // dialogsPage={props.store.getState().dialogsPage}
-                        />}/>
+                         />}/>
 
 
                         <Route path={'/news'} element={<News/>}/>

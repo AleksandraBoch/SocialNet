@@ -1,23 +1,33 @@
 import React from "react";
-import s from './Dialogs.module.css'
-import {DialogItem} from "./DialogItem/dialogItem";
-import {Message, MessagePropsType} from "./Message/message";
-import {changeMessageTextActionCreator,
+import { MessagePropsType} from "./Message/message";
+import {
+    changeMessageTextActionCreator, DialogsReducerType,
 } from "../State/dialogsReduser";
 import {addMessageAC} from "../State/dialogsReduser";
-import {DialogsPageType} from "../State/State";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {Dialogs} from "./dialogs";
+import {DialogsPageType} from "../State/State";
+import {AppStateType} from "../State/redux-store";
+import {ProfileReducerType} from "../State/profileReducer";
 
-export type DialogsProps = {
-    dialogsPage: DialogsPageType,
-    // dispatch: (action: ActionsTypes) => void,
-    message:Array<MessagePropsType>,
 
+
+
+type DialogsType = {
+    // dialogsPage: DialogsPageType;
+    // newMessage:string,
+    // message:Array<MessagePropsType>
+
+    // onMessageChange:()=>void,
+    // addMessage:()=>void
 }
 
-export const DialogsContainer = (props: DialogsProps) => {
+
+
+ export const DialogsContainer= (props:DialogsType) => {
+     const dialogsPage = useSelector<AppStateType, DialogsReducerType>(state => state.dialogsPage)
     const dispatch = useDispatch()
+
 
     const addNewMessage = () => {
         // dispatch(addMessageAC(props.dialogsPage.newMessageText))
@@ -34,9 +44,10 @@ export const DialogsContainer = (props: DialogsProps) => {
     return (
         <div>
      <Dialogs
-        dialogsPage={props.dialogsPage}
-              addMessage={addNewMessage}
-              onMessageChange={onNewMessageChange}
+onMessageChange={onNewMessageChange}
+addMessage={addNewMessage}
+dialogsPage={dialogsPage}
+
 
               />
         </div>

@@ -5,7 +5,7 @@ import {dialogsReducer} from "./dialogsReduser";
 
 export type AppStateType = ReturnType<typeof rootReducer>
 // export type StoreType = typeof store;
-export type StoreType = ReturnType<typeof rootReducer>;
+// export type StoreType = ReturnType<typeof rootReducer>;
 
 let rootReducer=combineReducers(
     {
@@ -16,4 +16,7 @@ let rootReducer=combineReducers(
 
 let store=createStore(rootReducer);
 
-export default store
+export default store;
+
+//@ts-ignore
+window.store = store

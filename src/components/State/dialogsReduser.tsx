@@ -1,13 +1,16 @@
 import React from "react";
 import {MessagePropsType} from "../Dialogs/Message/message";
 import {ActionsTypes, AddMessageType, ChangeNewMessageTextType} from "./State";
+import {DialogsItemProps} from "../Dialogs/DialogItem/dialogItem";
 
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY'
 const ADD_MESSAGE = 'ADD-MESSAGE'
 
-type DialogsReducerType={
+
+export type DialogsReducerType={
     newMessageText:string,
     dialogsData:{
+        avatar?: string;
         id:number,
         name:string
     }[]
@@ -19,9 +22,9 @@ type DialogsReducerType={
 }
 
 let initialState={
-    'newMessageText': '',
+    newMessageText: '',
     "dialogsData": [
-        {id: 11, name: "Sasha"},
+        {id: 11, name: "Sasha",},
         {id: 12, name: "Dina"},
         {id: 13, name: "Vladimir"},
         {id: 14, name: "Egor"},
@@ -40,7 +43,8 @@ export const dialogsReducer=(state: DialogsReducerType=initialState,action:Actio
         case UPDATE_NEW_MESSAGE_BODY:
 
             state.newMessageText = action.newMessageText
-            return state
+
+            return {...state}
             break;
 
         case ADD_MESSAGE:
@@ -69,7 +73,6 @@ export let addMessageAC = (newMessage: string): AddMessageType => {
 }
 
 export let changeMessageTextActionCreator = (text: string): ChangeNewMessageTextType => {
-   debugger
     return {
         type: 'UPDATE-NEW-MESSAGE-BODY',
         newMessageText: text

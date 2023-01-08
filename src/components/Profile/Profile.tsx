@@ -1,7 +1,5 @@
 import React, {useEffect} from "react";
-import {MyPosts, PostsDataType} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./profileInfo/ProfileInfo";
-import {ActionsTypes, StoreType} from "../State/State";
 import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 import {useDispatch, useSelector} from "react-redux";
 import {ProfileReducerType} from "../State/profileReducer";
