@@ -17,10 +17,18 @@ export const NavBar = () => {
                                  className={navData => navData.isActive ? s.active : s.item}>
                             Messages</NavLink></div>
                     <div>
-                        News
+                        <NavLink to={'/friends'} className={navData=>navData.isActive?s.active:s.item}>Friends</NavLink>
                     </div>
-                    <div>Music</div>
-                    <div>Settings</div>
+                    <div>
+                        <NavLink to={'/news'} className={navData=>navData.isActive?s.active:s.item}>News </NavLink>
+
+                    </div>
+                    <div>
+                        <NavLink to={'/music'} className={navData=>navData.isActive?s.active:s.item}>Music </NavLink>
+
+                        </div>
+                    <div> <NavLink to={'/settings'} className={navData=>navData.isActive?s.active:s.item}>Settings </NavLink>
+                    </div>
                 </div>
             </nav>
         </>

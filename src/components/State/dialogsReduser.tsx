@@ -63,7 +63,7 @@ export const dialogsReducer=(state: DialogsReducerType=initialState,action:Actio
 }
 
 export let addMessageAC = (newMessage: string): AddMessageType => {
-    console.log('111')
+    // console.log('111')
     return {
 
         type: "ADD-MESSAGE",

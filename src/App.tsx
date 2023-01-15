@@ -8,6 +8,8 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {News} from "./components/news/news";
 
 import {DialogsContainer} from "./components/Dialogs/dialogsContainer";
+import Friends from "./components/friends/friends";
+import FriendsContainer from "./components/friends/friendsContainer";
 
 
 export type AppPropsType = {
@@ -35,11 +37,11 @@ const App: React.FC<AppPropsType> = (props) => {
 
                         <Route path={'/dialogs/*'} element={<DialogsContainer
 
-
                             // dispatch={props.dispatch}
                             // dialogsPage={props.store.getState().dialogsPage}
                          />}/>
 
+                        <Route path={'/friends'} element={<FriendsContainer/>}/>
 
                         <Route path={'/news'} element={<News/>}/>
                     </Routes>
