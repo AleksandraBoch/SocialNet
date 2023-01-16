@@ -58,6 +58,7 @@ if (props.users.length===0)props.setUsers(
     <div>
         {props.users.map(f =>
         <div key={f.id}>
+          <span>
            <span>
                <div className={s.avatar}>
                    <img src={f.photo} />
@@ -73,7 +74,7 @@ if (props.users.length===0)props.setUsers(
     <div>{f.location.city}</div>
     <div>{f.location.country}</div>
 </span>
-
+        </span>
         </div>
         )}
 
