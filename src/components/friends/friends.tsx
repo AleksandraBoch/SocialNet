@@ -20,7 +20,11 @@ type FriendsPropsType ={
 
 
 const Friends=(props:FriendsPropsType)=>{
-if (props.users.length===0)props.setUsers(
+if (props.users.length===0)
+
+
+
+    props.setUsers(
     [
         {
             id: 1,
