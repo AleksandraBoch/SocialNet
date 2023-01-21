@@ -1,4 +1,4 @@
-import {addPostActionCreator, profileReducer, ProfileReducerType} from "../profileReducer";
+import {addPostActionCreator, profileReducer, ProfileReducerType} from "../State/profileReducer";
 
     test('new post should be added',()=>{
     const startState:ProfileReducerType={

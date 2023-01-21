@@ -1,9 +1,9 @@
 import React, {useEffect} from "react";
-import {ProfileInfo} from "./profileInfo/ProfileInfo";
 import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 import {useDispatch, useSelector} from "react-redux";
 import {ProfileReducerType} from "../State/profileReducer";
 import {AppStateType} from "../State/redux-store";
+import {ProfileInfo} from "./profileInfo/ProfileInfo";
 
 // export type ProfilePropsType={
 //     profilePage: {

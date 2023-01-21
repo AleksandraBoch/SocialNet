@@ -1,4 +1,4 @@
-import {addMessageAC, changeMessageTextActionCreator, dialogsReducer, DialogsReducerType} from "../dialogsReduser";
+import {addMessageAC, dialogsReducer, DialogsReducerType} from "../State/dialogsReduser";
 
 test ('message should be added',()=>{
 
