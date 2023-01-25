@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/SocialNet/static/css/main.102cfbbd.css",
-    "main.js": "/SocialNet/static/js/main.56c508df.js",
+    "main.js": "/SocialNet/static/js/main.b533751d.js",
     "static/js/787.0e68ad3e.chunk.js": "/SocialNet/static/js/787.0e68ad3e.chunk.js",
     "index.html": "/SocialNet/index.html",
     "main.102cfbbd.css.map": "/SocialNet/static/css/main.102cfbbd.css.map",
-    "main.56c508df.js.map": "/SocialNet/static/js/main.56c508df.js.map",
+    "main.b533751d.js.map": "/SocialNet/static/js/main.b533751d.js.map",
     "787.0e68ad3e.chunk.js.map": "/SocialNet/static/js/787.0e68ad3e.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.102cfbbd.css",
-    "static/js/main.56c508df.js"
+    "static/js/main.b533751d.js"
   ]
 }
