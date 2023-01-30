@@ -1,6 +1,7 @@
 import React from "react";
 import s from './friends.module.css'
 import axios from'axios'
+import userPhoto from '../../icons/userPhoto.png'
 
 export type UserType={
     id: number,
@@ -22,20 +23,27 @@ type FriendsPropsType ={
 
 
 const Friends=(props:FriendsPropsType)=>{
+    let getUsers=()=>{
 if (props.users.length===0)
 
 {axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response=>{
-    props.setUsers(response.data.users)
-})}
+debugger
+    props.setUsers(response.data.items)
+})}}
 
 return (
     <div>
+
+    <button onClick={getUsers}>Get Users</button>
+    <div>
+
+
         {props.users.map(f =>
         <div key={f.id}>
           <span>
            <span>
                <div className={s.avatar}>
-                   <img src={f.photo} />
+                   <img src={userPhoto} />
                </div>
                <div>{
                    f.follow?<button onClick={()=>{props.follow(f.id)}}>Follow</button>:
@@ -53,7 +61,7 @@ return (
         )}
 
 
-    </div>)
+    </div></div>)
 }
 
 export default Friends
