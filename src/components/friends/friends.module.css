@@ -3,3 +3,13 @@
     height: 80px;
     border-radius: 30px;
 }
+
+.photo{
+    margin: 10px;
+    height: 100px;
+    width: 100px;
+}
+
+.selectedPage{
+    font-weight: bold;
+}
