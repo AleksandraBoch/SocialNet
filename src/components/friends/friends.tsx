@@ -3,6 +3,7 @@ import s from './friends.module.css'
 import axios from'axios'
 import userPhoto from '../../icons/userPhoto.png'
 
+
 export type UserType={
     id: number,
     photo: string
@@ -22,15 +23,19 @@ type FriendsPropsType ={
 }
 
 
-const Friends=(props:FriendsPropsType)=>{
-    let getUsers=()=>{
-if (props.users.length===0)
+class Friends extends React.Component<FriendsPropsType> {
 
-{axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response=>{
-    props.setUsers(response.data.items)
-})}}
+    componentDidMount() {
 
-return (
+
+    axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+            this.props.setUsers(response.data.items)
+        })
+
+}}
+
+render() {
+    return (
     <div>
 
     <button onClick={getUsers}>Get Users</button>
@@ -60,7 +65,6 @@ return (
         )}
 
 
-    </div></div>)
-}
-
+    </div></div>
+)}
 export default Friends
