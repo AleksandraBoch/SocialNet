@@ -7,6 +7,9 @@ import {connect} from "react-redux";
 
 type MapStatePropsType={
     users:Array<UserType>
+    pageSize:number,
+    totalUsersCount:number,
+    currentPage:any
 }
 
 type MapDispatchPropsType={
@@ -17,7 +20,10 @@ type MapDispatchPropsType={
 
 const mapStateProps=(state:AppStateType):MapStatePropsType=>{
     return {
-        users:state.friendsPage.users
+        users:state.friendsPage.users,
+        pageSize: state.friendsPage.pageSize,
+        totalUsersCount:state.friendsPage.totalUsersCount,
+        currentPage:state.friendsPage.currentPage
     }
 
 }
