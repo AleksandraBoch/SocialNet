@@ -3,12 +3,9 @@ import './App.css';
 import {Header} from "./components/header/header";
 import {NavBar} from "./components/navBar/navBar";
 import {Profile} from "./components/Profile/Profile";
-
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {News} from "./components/news/news";
-
 import {DialogsContainer} from "./components/Dialogs/dialogsContainer";
-import Friends from "./components/friends/friends";
 import FriendsContainer from "./components/friends/friendsContainer";
 
 
