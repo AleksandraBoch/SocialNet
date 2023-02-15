@@ -1,9 +1,10 @@
 import React from "react";
-import Friends, {UserType} from "./friends";
+import {UserType} from "./friendsAPI";
 import {AppStateType} from "../State/redux-store";
 import {Dispatch} from "redux";
 import {followAC, setUsersAC, unfollowAC} from "../State/friendsReduser";
 import {connect} from "react-redux";
+import FriendsAPI from "./friendsAPI";
 
 type MapStatePropsType={
     users:Array<UserType>
@@ -42,5 +43,5 @@ const mapDispatchToProps=(dispatch:Dispatch):MapDispatchPropsType=>{
 }
 
 
-const FriendsContainer=connect(mapStateProps, mapDispatchToProps)(Friends)
+const FriendsContainer=connect(mapStateProps, mapDispatchToProps)(FriendsAPI)
 export default FriendsContainer

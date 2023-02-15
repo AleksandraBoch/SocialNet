@@ -1,5 +1,5 @@
 import React from "react";
-import {UserType} from "../friends/friends";
+import {UserType} from "../friends/friendsAPI";
 import exp from "constants";
 
 
