@@ -1,14 +1,11 @@
 import React from "react";
-import { MessagePropsType} from "./Message/message";
-import {
-    changeMessageTextActionCreator, DialogsReducerType,
+import {changeMessageTextActionCreator, DialogsReducerType,
 } from "../State/dialogsReduser";
 import {addMessageAC} from "../State/dialogsReduser";
 import {useDispatch, useSelector} from "react-redux";
 import {Dialogs} from "./dialogs";
-import {DialogsPageType} from "../State/State";
 import {AppStateType} from "../State/redux-store";
-import {ProfileReducerType} from "../State/profileReducer";
+
 
 
 

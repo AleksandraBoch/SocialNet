@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./friends.module.css";
 import userPhoto from "../../icons/userPhoto.png";
-import {FriendsPropsType, UserType} from "./friendsAPI";
+import {UserType} from "./friendsAPI";
 
 
 type UsersType={
@@ -16,6 +16,7 @@ type UsersType={
 
 
 export const Users=(props:UsersType)=>{
+
     let pagesCount=Math.ceil((props.totalUsersCount>54?54:props.totalUsersCount)/props.pageSize)
 
     let pages: Array<number> = []

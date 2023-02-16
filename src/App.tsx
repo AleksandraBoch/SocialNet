@@ -6,7 +6,8 @@ import {Profile} from "./components/Profile/Profile";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {News} from "./components/news/news";
 import {DialogsContainer} from "./components/Dialogs/dialogsContainer";
-import FriendsContainer from "./components/friends/friendsContainer";
+import {UserContainer} from "./components/friends/usersContainer";
+
 
 
 export type AppPropsType = {
@@ -38,7 +39,7 @@ const App: React.FC<AppPropsType> = (props) => {
                             // dialogsPage={props.store.getState().dialogsPage}
                          />}/>
 
-                        <Route path={'/friends'} element={<FriendsContainer/>}/>
+                        <Route path={'/friends'} element={<UserContainer />}/>
 
                         <Route path={'/news'} element={<News/>}/>
                     </Routes>
