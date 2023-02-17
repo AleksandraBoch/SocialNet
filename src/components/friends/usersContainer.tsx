@@ -1,22 +1,24 @@
 import React from "react";
 import {AppStateType} from "../State/redux-store";
 import {Dispatch} from "redux";
-import {followAC, setUsersAC, unfollowAC} from "../State/friendsReduser";
+import {followAC, setCurrentPageAC, setTotalUSersCount, setUsersAC, unfollowAC} from "../State/friendsReduser";
 import {connect} from "react-redux";
-import axios from "axios/index";
+import axios from "axios";
 import {Users} from "./Users";
 
-type MapStatePropsType={
-    users:Array<UserType>
-    pageSize:number,
-    totalUsersCount:number,
-    currentPage:any
+type MapStatePropsType = {
+    users: Array<UserType>
+    pageSize: number,
+    totalUsersCount: number,
+    currentPage: number
 }
 
-type MapDispatchPropsType={
-    follow:(userID:number)=>void,
-    unfollow:(userId:number)=>void,
-    setUsers:(users:Array<UserType>)=>void
+type MapDispatchPropsType = {
+    follow: (userID: number) => void,
+    unfollow: (userId: number) => void,
+    setUsers: (users: Array<UserType>) => void,
+    setTotalUsersCount: (totalUsersCount: number) => void,
+    setCurrentPage: (currentPage: number) => void
 }
 
 export type UserType = {
@@ -37,30 +39,37 @@ export type FriendsPropsType = {
     setUsers: (e: Array<UserType>) => void
     pageSize: number,
     setCurrentPage: (currentPage: number) => void
-    setTotalUsersCount: (TotalUsersCount: number) => void
+    setTotalUsersCount: (totalUsersCount: number) => void
     totalUsersCount: number,
     currentPage: number
 }
 
-const mapStateProps=(state:AppStateType):MapStatePropsType=>{
+const mapStateProps = (state: AppStateType): MapStatePropsType => {
     return {
-        users:state.friendsPage.users,
+        users: state.friendsPage.users,
         pageSize: state.friendsPage.pageSize,
-        totalUsersCount:state.friendsPage.totalUsersCount,
-        currentPage:state.friendsPage.currentPage
+        totalUsersCount: state.friendsPage.totalUsersCount,
+        currentPage: state.friendsPage.currentPage
     }
 
 }
 
-const mapDispatchToProps=(dispatch:Dispatch):MapDispatchPropsType=>{
+const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
     return {
-        follow:(userID:number)=>{
-            dispatch(followAC(userID))},
-        unfollow:(userId:number)=>{
+        follow: (userID: number) => {
+            dispatch(followAC(userID))
+        },
+        unfollow: (userId: number) => {
             dispatch(unfollowAC(userId))
         },
-        setUsers:(users:Array<UserType>)=>{
+        setUsers: (users: Array<UserType>) => {
             dispatch(setUsersAC(users))
+        },
+        setTotalUsersCount: (totalUsersCount: number) => {
+            dispatch(setTotalUSersCount(totalUsersCount))
+        },
+        setCurrentPage: (currentPage) => {
+            dispatch(setCurrentPageAC(currentPage))
         }
     }
 }
@@ -85,8 +94,6 @@ class UsersContainer extends React.Component<FriendsPropsType> {
 
 
     render() {
-
-
         return (
             <>
                 <Users
@@ -97,7 +104,6 @@ class UsersContainer extends React.Component<FriendsPropsType> {
                     users={this.props.users}
                     follow={this.props.follow}
                     unfollow={this.props.unfollow}
-
                 />
             </>
         )
@@ -105,7 +111,4 @@ class UsersContainer extends React.Component<FriendsPropsType> {
 }
 
 
-
-
-
-export const UserContainer =connect(mapStateProps, mapDispatchToProps)(UsersContainer)
+export const UserContainer = connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(mapStateProps, mapDispatchToProps)(UsersContainer)

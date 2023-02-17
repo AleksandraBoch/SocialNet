@@ -7,6 +7,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {News} from "./components/news/news";
 import {DialogsContainer} from "./components/Dialogs/dialogsContainer";
 import {UserContainer} from "./components/friends/usersContainer";
+import {Users} from "./components/friends/Users";
 
 
 
@@ -16,7 +17,7 @@ export type AppPropsType = {
     // dispatch: (action: ActionsTypes) => void
 }
 
-const App: React.FC<AppPropsType> = (props) => {
+const App: React.FC<AppPropsType> = () => {
     // const state = useSelector((state)=>state)
     // console.log('state', state)
     // useEffect(()=>{

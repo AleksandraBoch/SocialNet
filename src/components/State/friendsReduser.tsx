@@ -1,6 +1,7 @@
 import React from "react";
-import {UserType} from "../friends/friendsAPI";
-import exp from "constants";
+import { UserType } from "../friends/usersContainer";
+
+
 
 
 const FOLLOW = 'FOLLOW'

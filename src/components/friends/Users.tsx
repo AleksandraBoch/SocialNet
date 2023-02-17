@@ -1,7 +1,8 @@
 import React from "react";
 import s from "./friends.module.css";
 import userPhoto from "../../icons/userPhoto.png";
-import {UserType} from "./friendsAPI";
+import {UserType} from "./usersContainer";
+
 
 
 type UsersType={
@@ -24,9 +25,10 @@ export const Users=(props:UsersType)=>{
         pages = [...pages, i]
     }
 
-
-
     return(
+
+
+
         <>
             <div>
                 {pages.map(el => {
@@ -35,7 +37,7 @@ export const Users=(props:UsersType)=>{
                     }} className={props.currentPage === el ?'selectedPage': ''}>{el} </span>
                 })}
             </div>
-            {/*<button onClick={getUsers}>Get Users</button>*/}
+
             <div>
 
 
@@ -54,8 +56,8 @@ export const Users=(props:UsersType)=>{
            </span>
 <span>
     <div>{f.fullName}</div>
-    <div>{f.location.city}</div>
-    <div>{f.location.country}</div>
+    <div>{f.location?.city}</div>
+    <div>{f.location?.country}</div>
 </span>
         </span>
                         </div>
