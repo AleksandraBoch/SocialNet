@@ -26,15 +26,12 @@ export const Users=(props:UsersType)=>{
     }
 
     return(
-
-
-
         <>
             <div>
                 {pages.map(el => {
                     return <span onClick={() => {
                         props.onPageChanged(el)
-                    }} className={props.currentPage === el ?'selectedPage': ''}>{el} </span>
+                    }} className={props.currentPage === el?'selectedPage': ''}>{el} </span>
                 })}
             </div>
 
@@ -55,7 +52,7 @@ export const Users=(props:UsersType)=>{
 
            </span>
 <span>
-    <div>{f.fullName}</div>
+    <div>{f.name}</div>
     <div>{f.location?.city}</div>
     <div>{f.location?.country}</div>
 </span>

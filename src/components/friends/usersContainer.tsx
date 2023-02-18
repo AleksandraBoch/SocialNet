@@ -1,16 +1,25 @@
 import React from "react";
 import {AppStateType} from "../State/redux-store";
 import {Dispatch} from "redux";
-import {followAC, setCurrentPageAC, setTotalUSersCount, setUsersAC, unfollowAC} from "../State/friendsReduser";
+import {
+    followAC,
+    setCurrentPageAC,
+    setTotalUSersCount,
+    setUsersAC,
+    toggleIsFetchingAC,
+    unfollowAC
+} from "../State/friendsReduser";
 import {connect} from "react-redux";
 import axios from "axios";
 import {Users} from "./Users";
+import {Preloader} from "../Staff/preloader";
 
 type MapStatePropsType = {
     users: Array<UserType>
     pageSize: number,
     totalUsersCount: number,
-    currentPage: number
+    currentPage: number,
+    isFetching:boolean
 }
 
 type MapDispatchPropsType = {
@@ -18,13 +27,14 @@ type MapDispatchPropsType = {
     unfollow: (userId: number) => void,
     setUsers: (users: Array<UserType>) => void,
     setTotalUsersCount: (totalUsersCount: number) => void,
-    setCurrentPage: (currentPage: number) => void
+    setCurrentPage: (pageNumber: number) => void,
+    toggleIsFetching:(isFetching:boolean)=>void
 }
 
 export type UserType = {
     id: number,
     photo: string,
-    fullName: string,
+    name: string,
     location: {
         country: string
         city: string
@@ -41,7 +51,9 @@ export type FriendsPropsType = {
     setCurrentPage: (currentPage: number) => void
     setTotalUsersCount: (totalUsersCount: number) => void
     totalUsersCount: number,
-    currentPage: number
+    currentPage: number,
+    isFetching:boolean,
+    toggleIsFetching:(isFetching:boolean)=>void
 }
 
 const mapStateProps = (state: AppStateType): MapStatePropsType => {
@@ -49,7 +61,8 @@ const mapStateProps = (state: AppStateType): MapStatePropsType => {
         users: state.friendsPage.users,
         pageSize: state.friendsPage.pageSize,
         totalUsersCount: state.friendsPage.totalUsersCount,
-        currentPage: state.friendsPage.currentPage
+        currentPage: state.friendsPage.currentPage,
+        isFetching:state.friendsPage.isFetching
     }
 
 }
@@ -68,8 +81,11 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
         setTotalUsersCount: (totalUsersCount: number) => {
             dispatch(setTotalUSersCount(totalUsersCount))
         },
-        setCurrentPage: (currentPage) => {
-            dispatch(setCurrentPageAC(currentPage))
+        setCurrentPage: (pageNumber) => {
+            dispatch(setCurrentPageAC(pageNumber))
+        },
+        toggleIsFetching:(isFetching:boolean)=>{
+            dispatch(toggleIsFetchingAC(isFetching))
         }
     }
 }
@@ -78,7 +94,10 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
 class UsersContainer extends React.Component<FriendsPropsType> {
 
     componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
+        this.props.toggleIsFetching(true)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).
+        then(response => {
+            this.props.toggleIsFetching(false)
             this.props.setUsers(response.data.items)
             this.props.setTotalUsersCount(response.data.totalCount)
         })
@@ -86,7 +105,6 @@ class UsersContainer extends React.Component<FriendsPropsType> {
 
     onPageChanged = (pageNumber: number) => {
         this.props.setCurrentPage(pageNumber)
-
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`).then(response => {
             this.props.setUsers(response.data.items)
         })
@@ -96,6 +114,7 @@ class UsersContainer extends React.Component<FriendsPropsType> {
     render() {
         return (
             <>
+                {this.props.isFetching? <Preloader/>:null}
                 <Users
                     totalUsersCount={this.props.totalUsersCount}
                     pageSize={this.props.pageSize}

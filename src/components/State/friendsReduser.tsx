@@ -1,9 +1,6 @@
 import React from "react";
 import { UserType } from "../friends/usersContainer";
 
-
-
-
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 
@@ -14,11 +11,15 @@ type FriendsPageType={
     pageSize:number,
     totalUsersCount:number,
     currentPage:number,
+    isFetching:boolean
 }
 
 type ActionCreatorType= followAC|UnfollowAC|setUsersAC|setUsersAC
-|setCurrentPage|setTotalUsersCount
-
+|setCurrentPage|setTotalUsersCount|ToggleIsFetching
+type ToggleIsFetching={
+    type:"TOGGLE_IS_FETCHING",
+    isFetching:boolean
+}
 
 type setTotalUsersCount = {
     type: "SET_TOTAL_USERS_COUNT",
@@ -28,9 +29,7 @@ type setTotalUsersCount = {
 }
 type setCurrentPage ={
     type:'SET_CURRENT_PAGE',
-    payload:{
         currentPage:number
-    }
 }
  type followAC={
     type:'FOLLOW',
@@ -58,6 +57,7 @@ users:[],
     pageSize:5,
     totalUsersCount:0,
     currentPage:1,
+    isFetching:true
 
 }
 
@@ -69,8 +69,6 @@ export const friendsReducer = (state: FriendsPageType = initialState, action: Ac
                     ...el, follow: true
                 } : el)
             }
-
-
         case UNFOLLOW:
             return {
                 ...state, users: state.users.map(el => el.id === action.payload.userId ? {
@@ -84,12 +82,16 @@ export const friendsReducer = (state: FriendsPageType = initialState, action: Ac
                  }
         case "SET_CURRENT_PAGE":
             return{
-                ...state,currentPage:action.payload.currentPage
+                ...state,currentPage:action.currentPage
             }
 
         case "SET_TOTAL_USERS_COUNT":
             return{
                 ...state,totalUsersCount:action.payload.totalUsersCount
+            }
+        case "TOGGLE_IS_FETCHING":
+            return {
+                ...state,isFetching:action.isFetching
             }
         default:
             return state
@@ -121,9 +123,9 @@ export const setUsersAC = (users:Array<UserType>):setUsersAC => {
 export const setCurrentPageAC=(currentPage:number):setCurrentPage=>{
     return{
         type:'SET_CURRENT_PAGE',
-        payload:{
+
             currentPage
-        }
+
     }
 }
 
@@ -133,5 +135,11 @@ export const setTotalUSersCount=(totalUsersCount:number):setTotalUsersCount=>{
         payload:{
             totalUsersCount
         }
+    }
+}
+export const toggleIsFetchingAC=(isFetching:boolean):ToggleIsFetching=>{
+    return{
+        type:'TOGGLE_IS_FETCHING',
+        isFetching
     }
 }
