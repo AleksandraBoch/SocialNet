@@ -130,4 +130,11 @@ class UsersContainer extends React.Component<FriendsPropsType> {
 }
 
 
-export const UserContainer = connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(mapStateProps, mapDispatchToProps)(UsersContainer)
+export const UserContainer = connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(mapStateProps, {
+    follow: followAC,
+    unfollow: unfollowAC,
+    setUsers: setUsersAC,
+    setTotalUsersCount: setTotalUSersCount,
+    setCurrentPage: setCurrentPageAC,
+    toggleIsFetching:toggleIsFetchingAC
+})(UsersContainer)
