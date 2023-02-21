@@ -20,13 +20,15 @@ export type StateProps = {
 }
 export type ProfilePageType = {
     newPostText: string
-    posts: Array<PostsDataType>
+    posts: Array<PostsDataType>,
+    profile:any
 
 }
 export type StoreType = {
     state: StateProps,
 }
-export type ActionsTypes = AddPostActionType | ChangeNewPostType | UpdateNewMessageBody | AddMessageType
+export type ActionsTypes = AddPostActionType|
+setUsersProps| ChangeNewPostType | UpdateNewMessageBody | AddMessageType
 export type UpdateNewMessageBody = {
     type: 'UPDATE-NEW-MESSAGE-BODY',
     newMessageText: string
@@ -51,3 +53,7 @@ export type ChangeNewMessageTextType = {
     newMessageText: string
 }
 
+export type setUsersProps={
+    type: "SET-USERS-PROFILE",
+    profile:any
+}

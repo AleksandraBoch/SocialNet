@@ -8,6 +8,7 @@ import {News} from "./components/news/news";
 import {DialogsContainer} from "./components/Dialogs/dialogsContainer";
 import {UserContainer} from "./components/friends/usersContainer";
 import {Users} from "./components/friends/Users";
+import {ProfileContainer} from "./components/Profile/profileContainer";
 
 
 
@@ -30,7 +31,7 @@ const App: React.FC<AppPropsType> = () => {
                 <NavBar/>
                 <div className={'app-wrapper-content'}>
                     <Routes>
-                        <Route path={'/profile'} element={<Profile
+                        <Route path={'/profile'} element={<ProfileContainer
                            // store={props.store}
                         />}/>
 

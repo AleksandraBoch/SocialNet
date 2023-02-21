@@ -1,6 +1,6 @@
 import React from "react";
 import {PostsDataType} from "../Profile/MyPosts/MyPosts";
-import {ActionsTypes, AddPostActionType, ChangeNewPostType} from "./State";
+import {ActionsTypes, AddPostActionType, ChangeNewPostType, ProfilePageType, setUsersProps} from "./State";
 
 export type ProfileReducerType = {
     newPostText: string,
@@ -8,7 +8,8 @@ export type ProfileReducerType = {
         id: number,
         message: string,
         likesCount: number
-    }[]
+    }[],
+    profile:any
 }
 
 let initialState = {
@@ -18,7 +19,8 @@ let initialState = {
             {id: 1, message: 'My first post', likesCount: 12},
             {id: 2, message: 'Im Okay', likesCount: 11},
             {id: 3, message: 'im learning js', likesCount: 1}
-        ]
+        ],
+    profile:null,
 }
 
 export const profileReducer = (state: ProfileReducerType = initialState, action: ActionsTypes): ProfileReducerType => {
@@ -42,6 +44,10 @@ export const profileReducer = (state: ProfileReducerType = initialState, action:
         case 'CHANGE-NEW-POST':
             // state.newPostText = action.newPostText;
             return {...state, newPostText: action.newPostText}
+
+
+        case 'SET-USERS-PROFILE':
+            return {...state,profile:action.profile}
     }
     return state
 }
@@ -54,9 +60,14 @@ export let addPostActionCreator = (postText: string): AddPostActionType => {
 }
 
 export let changePostActionCreator = (text: string): ChangeNewPostType => {
-    console.log('text', text)
     return {
         type: "CHANGE-NEW-POST",
         newPostText: text
+    }
+}
+export let setUsersProfile=(profile:ProfilePageType):setUsersProps=>{
+    return{
+        type:"SET-USERS-PROFILE",
+        profile
     }
 }
