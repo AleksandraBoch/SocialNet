@@ -21,7 +21,8 @@ export type StateProps = {
 export type ProfilePageType = {
     newPostText: string
     posts: Array<PostsDataType>,
-    profile:any
+    profile:any,
+    photo?:string|null
 
 }
 export type StoreType = {

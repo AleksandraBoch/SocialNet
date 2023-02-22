@@ -3,16 +3,18 @@ import {Profile} from "./Profile";
 import axios from "axios";
 import {connect} from "react-redux";
 import {PostsDataType} from "./MyPosts/MyPosts";
-import {setUsersProfile} from "../State/profileReducer";
+import {ProfileType, setUsersProfile} from "../State/profileReducer";
 import {StateProps} from "../State/State";
+import {ProfileInfoT} from "./profileInfo/ProfileInfo";
 
-type ProfilePropsType={
+export type ProfilePropsType={
     profilePage: {
         newPostText:string,
-        posts: Array<PostsDataType>
+        posts: Array<PostsDataType>,
+        profile:null
     }}
 
-export class ProfileContainer extends React.Component<any,ProfilePropsType>{
+export class ProfileContainer extends React.Component<any,ProfileInfoT>{
 
     componentDidMount() {
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).
@@ -26,15 +28,18 @@ export class ProfileContainer extends React.Component<any,ProfilePropsType>{
     return(
         <>
             <Profile
-                {...this.props}
-            />
+                profile={undefined} name={""} id={0} photo={{
+                large: undefined,
+                small: undefined
+            }} {...this.props}            />
 </>
 
     )}
 }
 
 type MapStatePropsType={
-
+    // posts: Array<PostPropsType>
+    profile: ProfileType | null
 }
 
 let mapStateToProps=(state:StateProps):MapStatePropsType=>{

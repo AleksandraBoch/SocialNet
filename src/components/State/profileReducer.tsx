@@ -12,6 +12,17 @@ export type ProfileReducerType = {
     profile:any
 }
 
+export type ProfileType={
+    profile: any;
+    name:string,
+    id:number,
+    photo: {
+        large: string | undefined,
+        small: string | undefined
+    },
+}
+
+
 let initialState = {
     'newPostText': '',
     'posts':

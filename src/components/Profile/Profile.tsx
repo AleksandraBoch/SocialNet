@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 import {useDispatch, useSelector} from "react-redux";
-import {ProfileReducerType} from "../State/profileReducer";
+import {ProfileReducerType, ProfileType} from "../State/profileReducer";
 import {AppStateType} from "../State/redux-store";
 import {ProfileInfo} from "./profileInfo/ProfileInfo";
 
@@ -15,16 +15,17 @@ import {ProfileInfo} from "./profileInfo/ProfileInfo";
 
 type StatePropsType={
     // store:StoreType
+    profile: any;
 }
 
-export const Profile  : React.FC<StatePropsType>= (props) => {
+export const Profile = (props:ProfileType) => {
     const profilePage = useSelector<AppStateType, ProfileReducerType>(state => state.profilePage)
 
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
     return (
 
         <div>
-          <ProfileInfo/>
+          <ProfileInfo profile={props.profile}/>
             <MyPostsContainer posts={profilePage.posts}
             newPostText={profilePage.newPostText}
             />
