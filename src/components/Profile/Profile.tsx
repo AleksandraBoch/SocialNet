@@ -18,6 +18,10 @@ type StatePropsType={
     profile: any;
 }
 
+type Props = {
+    profile: ProfileType
+}
+
 export const Profile = (props:ProfileType) => {
     const profilePage = useSelector<AppStateType, ProfileReducerType>(state => state.profilePage)
 

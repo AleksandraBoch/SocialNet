@@ -23,6 +23,8 @@ export type ProfileType={
 }
 
 
+
+
 let initialState = {
     'newPostText': '',
     'posts':
