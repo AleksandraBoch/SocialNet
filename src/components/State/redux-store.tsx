@@ -3,6 +3,7 @@ import {combineReducers, legacy_createStore as createStore} from 'redux';
 import {profileReducer} from "./profileReducer";
 import {dialogsReducer} from "./dialogsReduser";
 import {friendsReducer} from "./friendsReduser";
+import authReducer from "./authReduser";
 
 export type AppStateType = ReturnType<typeof rootReducer>
 // export type StoreType = typeof store;
@@ -13,6 +14,7 @@ let rootReducer=combineReducers(
         profilePage:profileReducer,
         dialogsPage: dialogsReducer,
         friendsPage:friendsReducer,
+        auth:authReducer,
     }
 )
 

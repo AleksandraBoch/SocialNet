@@ -2,14 +2,9 @@ import React, {ReactComponentElement, ReactElement} from "react";
 import {Profile} from "./Profile";
 import axios from "axios";
 import {connect} from "react-redux";
-import {PostsDataType} from "./MyPosts/MyPosts";
 import {ProfileType, setUsersProfile} from "../State/profileReducer";
 import {StateProps} from "../State/State";
-import {ProfileInfoT} from "./profileInfo/ProfileInfo";
 import {useLocation, useNavigate, useParams,} from "react-router-dom";
-import Any = jasmine.Any;
-// import {RouteComponentProps} from "react-router-dom";
-
 
 type PathParamsType = {
     userId: string,

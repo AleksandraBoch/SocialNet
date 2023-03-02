@@ -9,6 +9,7 @@ import {DialogsContainer} from "./components/Dialogs/dialogsContainer";
 import {UserContainer} from "./components/friends/usersContainer";
 import {Users} from "./components/friends/Users";
 import ProfileContainer from "./components/Profile/profileContainer";
+import HeaderContainer from "./components/header/headerContainer";
 
 
 
@@ -27,7 +28,7 @@ const App: React.FC<AppPropsType> = () => {
     return (
         <div className={'app-wrapper'}>
             <BrowserRouter>
-                <Header/>
+                <HeaderContainer/>
                 <NavBar/>
                 <div className={'app-wrapper-content'}>
                     <Routes>

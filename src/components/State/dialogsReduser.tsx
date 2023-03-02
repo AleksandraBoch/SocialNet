@@ -1,7 +1,6 @@
 import React from "react";
 import {MessagePropsType} from "../Dialogs/Message/message";
 import {ActionsTypes, AddMessageType, ChangeNewMessageTextType} from "./State";
-import {DialogsItemProps} from "../Dialogs/DialogItem/dialogItem";
 
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY'
 const ADD_MESSAGE = 'ADD-MESSAGE'
