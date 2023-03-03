@@ -2,6 +2,8 @@ import React from "react";
 import s from "./friends.module.css";
 import userPhoto from "../../icons/userPhoto.png";
 import {UserType} from "./usersContainer";
+import {NavLink} from "react-router-dom";
+import axios from "axios";
 
 
 
@@ -43,11 +45,25 @@ export const Users=(props:UsersType)=>{
           <span>
            <span>
                <div className={s.avatar}>
-                   <img src={userPhoto} />
+                   <NavLink to={'./profile/'+f.id}>
+                      <img src={f.photo !=null?f.photo :userPhoto} />
+                   </NavLink>
+
                </div>
                <div>{
-                   f.follow?<button onClick={()=>{props.follow(f.id)}}>Follow</button>:
-                       <button onClick={()=>{props.unfollow(f.id)}}>Unfollow</button>
+                   f.follow?<button onClick={()=>{
+                           axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${f.id}`,{}).then(response => {
+                           if (response.data.resultCode ==0){props.follow(f.id)}
+                           })
+
+                       props.follow(f.id)}}>Follow</button>:
+                       <button onClick={()=>{
+                           axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${f.id}`).then(response => {
+                               if (response.data.resultCode ==0){props.follow(f.id)}
+                           })
+
+                           props.follow(f.id)
+                           }}>Unfollow</button>
                }</div>
 
            </span>

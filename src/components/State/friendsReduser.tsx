@@ -1,5 +1,5 @@
 import React from "react";
-import { UserType } from "../friends/usersContainer";
+import { UserType } from "../users/usersContainer";
 
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'

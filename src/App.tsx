@@ -6,8 +6,8 @@ import {Profile} from "./components/Profile/Profile";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {News} from "./components/news/news";
 import {DialogsContainer} from "./components/Dialogs/dialogsContainer";
-import {UserContainer} from "./components/friends/usersContainer";
-import {Users} from "./components/friends/Users";
+import {UserContainer} from "./components/users/usersContainer";
+import {Users} from "./components/users/Users";
 import ProfileContainer from "./components/Profile/profileContainer";
 import HeaderContainer from "./components/header/headerContainer";
 
@@ -43,7 +43,7 @@ const App: React.FC<AppPropsType> = () => {
                             // dialogsPage={props.store.getState().dialogsPage}
                          />}/>
 
-                        <Route path={'/friends'} element={<UserContainer />}/>
+                        <Route path={'/users'} element={<UserContainer />}/>
 
                         <Route path={'/news'} element={<News/>}/>
                     </Routes>
