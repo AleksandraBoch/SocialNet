@@ -26,8 +26,9 @@ export const Users=(props:UsersType)=>{
     for (let i = 1; i <= pagesCount; i++) {
         pages = [...pages, i]
     }
-
+console.log(props.users)
     return(
+
         <>
             <div>
                 {pages.map(el => {
@@ -51,19 +52,33 @@ export const Users=(props:UsersType)=>{
 
                </div>
                <div>{
-                   f.follow?<button onClick={()=>{
-                           axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${f.id}`,{}).then(response => {
+
+                   f.followed?
+                       <button onClick={()=>{
+                           console.log('111')
+                           axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${f.id}`,{},{withCredentials: true,
+                               headers:{
+                                   'API-KEY':'04179916-1cd9-4a8d-bea3-202ee52f7094',
+                               }
+                           }).then(response => {
                            if (response.data.resultCode ==0){props.follow(f.id)}
                            })
 
-                       props.follow(f.id)}}>Follow</button>:
+                       props.unfollow(f.id)}}
+                       >Unfollow</button>:
                        <button onClick={()=>{
-                           axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${f.id}`).then(response => {
-                               if (response.data.resultCode ==0){props.follow(f.id)}
+                           console.log('121')
+                           axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${f.id}`,{withCredentials: true,
+                           headers:{
+                               'API-KEY':'04179916-1cd9-4a8d-bea3-202ee52f7094',
+                           }
+                           }).then(response => {
+                               if (response.data.resultCode ==0)
+                               {props.unfollow(f.id)}
                            })
 
                            props.follow(f.id)
-                           }}>Unfollow</button>
+                           }}>Follow</button>
                }</div>
 
            </span>
@@ -79,6 +94,39 @@ export const Users=(props:UsersType)=>{
 
             </div>
         </>
+
+        //
+        // и сама кнопка:
+        // <button onClick={() => {
+        //                             u.followed ?
+        //                                 axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
+        //                                     withCredentials: true,
+        //                                     headers: {
+        //                                         "API-KEY": "вводите свой)"
+        //                                     }
+        //                                 })
+        //                                     .then((answer) => {
+        //                                         if (answer.data.resultCode === 0) {
+        //                                             props.followToggle(u.id)
+        //
+        //                                         }
+        //                                     })
+        //
+        //                             :
+        //                                 axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,{}, {
+        //                                     withCredentials: true,
+        //                                     headers: {
+        //                                         "API-KEY": "вводите свой)"
+        //                                     }
+        //                                 })
+        //                                     .then((answer) => {
+        //                                         if (answer.data.resultCode === 0) {
+        //                                             props.followToggle(u.id)
+        //
+        //                                         }
+        //                                     })
+        //
+        //                         }}>{u.followed ? "unfollow" : "follow"}</button>
     )
 
 }

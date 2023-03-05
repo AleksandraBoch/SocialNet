@@ -65,15 +65,24 @@ export const friendsReducer = (state: FriendsPageType = initialState, action: Ac
     switch (action.type) {
         case FOLLOW:
             return {
-                ...state, users: state.users.map(el => el.id === action.payload.userId ? {
-                    ...el, follow: true
-                } : el)
+                ...state,
+                users: state.users.map(el =>
+                { if(el.id ===action.payload.userId){return {
+                        ...el, followed: true}
+                    }
+                    return el;}
+                )
             }
         case UNFOLLOW:
             return {
-                ...state, users: state.users.map(el => el.id === action.payload.userId ? {
-                    ...el, follow: false
-                } : el)
+                ...state,
+                users: state.users.map(el =>
+                    { if(el.id ===action.payload.userId){return {
+                        ...el, followed: false}
+                    }
+                        return el;}
+                )
+
             }
 
         case 'SET_USERS':

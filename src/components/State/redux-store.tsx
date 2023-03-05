@@ -15,6 +15,7 @@ let rootReducer=combineReducers(
         dialogsPage: dialogsReducer,
         friendsPage:friendsReducer,
         auth:authReducer,
+
     }
 )
 
