@@ -1,11 +1,10 @@
 import React from "react";
 import {AppStateType} from "../State/redux-store";
-import {Dispatch} from "redux";
 import {
     followAC,
     setCurrentPageAC,
     setTotalUSersCount,
-    setUsersAC,
+    setUsersAC, toggleFollowingProgressAC,
     toggleIsFetchingAC,
     unfollowAC
 } from "../State/friendsReduser";
@@ -13,23 +12,27 @@ import {connect} from "react-redux";
 import axios from "axios";
 import {Users} from "./Users";
 import {Preloader} from "../Staff/preloader";
+import {getUsers} from "../API/api";
 
 type MapStatePropsType = {
     users: Array<UserType>
     pageSize: number,
     totalUsersCount: number,
     currentPage: number,
-    isFetching:boolean
+    isFetching:boolean,
+    followInProgress:number[]
+
 }
 
-type MapDispatchPropsType = {
-    follow: (userID: number) => void,
-    unfollow: (userId: number) => void,
-    setUsers: (users: Array<UserType>) => void,
-    setTotalUsersCount: (totalUsersCount: number) => void,
-    setCurrentPage: (pageNumber: number) => void,
-    toggleIsFetching:(isFetching:boolean)=>void
-}
+// type MapDispatchPropsType = {
+//     follow: (userID: number) => void,
+//     unfollow: (userId: number) => void,
+//     setUsers: (users: Array<UserType>) => void,
+//     setTotalUsersCount: (totalUsersCount: number) => void,
+//     setCurrentPage: (pageNumber: number) => void,
+//     toggleIsFetching:(isFetching:boolean)=>void,
+//     toggleFollowingProgress:(isFetching:boolean)=>void
+// }
 
 export type UserType = {
     id: number,
@@ -52,43 +55,24 @@ export type FriendsPropsType = {
     setTotalUsersCount: (totalUsersCount: number) => void
     totalUsersCount: number,
     currentPage: number,
-    isFetching:boolean,
-    toggleIsFetching:(isFetching:boolean)=>void
+    isFetching: boolean,
+    toggleIsFetching: (isFetching: boolean) => void
+    toggleFollowingProgress: (isFetching: boolean,id:number) =>void,
+    followInProgress: number[]
 }
-
 const mapStateProps = (state: AppStateType): MapStatePropsType => {
     return {
         users: state.friendsPage.users,
         pageSize: state.friendsPage.pageSize,
         totalUsersCount: state.friendsPage.totalUsersCount,
         currentPage: state.friendsPage.currentPage,
-        isFetching:state.friendsPage.isFetching
+        isFetching:state.friendsPage.isFetching,
+        followInProgress:state.friendsPage.followInProgress,
     }
 
 }
 
-const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
-    return {
-        follow: (userID: number) => {
-            dispatch(followAC(userID))
-        },
-        unfollow: (userId: number) => {
-            dispatch(unfollowAC(userId))
-        },
-        setUsers: (users: Array<UserType>) => {
-            dispatch(setUsersAC(users))
-        },
-        setTotalUsersCount: (totalUsersCount: number) => {
-            dispatch(setTotalUSersCount(totalUsersCount))
-        },
-        setCurrentPage: (pageNumber) => {
-            dispatch(setCurrentPageAC(pageNumber))
-        },
-        toggleIsFetching:(isFetching:boolean)=>{
-            dispatch(toggleIsFetchingAC(isFetching))
-        }
-    }
-}
+//
 
 
 class UsersContainer extends React.Component<FriendsPropsType> {
@@ -105,7 +89,7 @@ class UsersContainer extends React.Component<FriendsPropsType> {
 
     onPageChanged = (pageNumber: number) => {
         this.props.setCurrentPage(pageNumber)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`,{withCredentials: true}).then(response => {
+      getUsers(this.props.pageSize,this.props.currentPage).then(response => {
             this.props.setUsers(response.data.items)
         })
     }
@@ -123,6 +107,8 @@ class UsersContainer extends React.Component<FriendsPropsType> {
                     users={this.props.users}
                     follow={this.props.follow}
                     unfollow={this.props.unfollow}
+                    toggleFollowingProgress={this.props.toggleFollowingProgress}
+                    followInProgress={this.props.followInProgress}
                 />
             </>
         )
@@ -130,11 +116,12 @@ class UsersContainer extends React.Component<FriendsPropsType> {
 }
 
 
-export const UserContainer = connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(mapStateProps, {
+export const UserContainer = connect(mapStateProps, {
     follow: followAC,
     unfollow: unfollowAC,
     setUsers: setUsersAC,
     setTotalUsersCount: setTotalUSersCount,
     setCurrentPage: setCurrentPageAC,
-    toggleIsFetching:toggleIsFetchingAC
+    toggleIsFetching:toggleIsFetchingAC,
+    toggleFollowingProgress:toggleFollowingProgressAC
 })(UsersContainer)

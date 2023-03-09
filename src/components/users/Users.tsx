@@ -15,6 +15,8 @@ type UsersType={
     totalUsersCount: number,
     onPageChanged:(pageNumber:number)=>void,
     currentPage: number
+    toggleFollowingProgress:(isFetching:boolean,id:number)=>void,
+    followInProgress:number[]
 }
 
 
@@ -54,20 +56,26 @@ console.log(props.users)
                <div>{
 
                    f.followed?
-                       <button onClick={()=>{
-                           console.log('111')
+                       <button
+
+                           onClick={()=>{
+                           props.toggleFollowingProgress(true,f.id)
+
                            axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${f.id}`,{},{withCredentials: true,
                                headers:{
                                    'API-KEY':'04179916-1cd9-4a8d-bea3-202ee52f7094',
                                }
                            }).then(response => {
                            if (response.data.resultCode ==0){props.follow(f.id)}
+                               props.toggleFollowingProgress(false,f.id)
+
                            })
 
                        props.unfollow(f.id)}}
                        >Unfollow</button>:
                        <button onClick={()=>{
-                           console.log('121')
+                           props.toggleFollowingProgress(true,f.id)
+
                            axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${f.id}`,{withCredentials: true,
                            headers:{
                                'API-KEY':'04179916-1cd9-4a8d-bea3-202ee52f7094',
@@ -75,6 +83,8 @@ console.log(props.users)
                            }).then(response => {
                                if (response.data.resultCode ==0)
                                {props.unfollow(f.id)}
+
+                               props.toggleFollowingProgress(false,f.id)
                            })
 
                            props.follow(f.id)
@@ -95,38 +105,7 @@ console.log(props.users)
             </div>
         </>
 
-        //
-        // и сама кнопка:
-        // <button onClick={() => {
-        //                             u.followed ?
-        //                                 axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
-        //                                     withCredentials: true,
-        //                                     headers: {
-        //                                         "API-KEY": "вводите свой)"
-        //                                     }
-        //                                 })
-        //                                     .then((answer) => {
-        //                                         if (answer.data.resultCode === 0) {
-        //                                             props.followToggle(u.id)
-        //
-        //                                         }
-        //                                     })
-        //
-        //                             :
-        //                                 axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,{}, {
-        //                                     withCredentials: true,
-        //                                     headers: {
-        //                                         "API-KEY": "вводите свой)"
-        //                                     }
-        //                                 })
-        //                                     .then((answer) => {
-        //                                         if (answer.data.resultCode === 0) {
-        //                                             props.followToggle(u.id)
-        //
-        //                                         }
-        //                                     })
-        //
-        //                         }}>{u.followed ? "unfollow" : "follow"}</button>
+
     )
 
 }
