@@ -1,5 +1,7 @@
 import React from "react";
 import {UserType} from "../users/usersContainer";
+import {UsersAPI} from "../API/api";
+import {dispatchType} from "./redux-store";
 
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
@@ -127,14 +129,14 @@ export const friendsReducer = (state: FriendsPageType = initialState, action: Ac
     }
 }
 
-export const followAC = (userId: number): followAC => {
+export const followSucAC = (userId: number): followAC => {
     return {
         type: FOLLOW,
         payload: {userId}
 
     }
 }
-export const unfollowAC = (userId: number): UnfollowAC => {
+export const unfollowSucAC = (userId: number): UnfollowAC => {
     return {
         type: UNFOLLOW,
         payload: {
@@ -159,7 +161,7 @@ export const setCurrentPageAC = (currentPage: number): setCurrentPage => {
     }
 }
 
-export const setTotalUSersCount = (totalUsersCount: number): setTotalUsersCount => {
+export const setTotalUsersCountAC = (totalUsersCount: number): setTotalUsersCount => {
     return {
         type: 'SET_TOTAL_USERS_COUNT',
         payload: {
@@ -179,3 +181,41 @@ export const toggleFollowingProgressAC = (isFetching: boolean, userId:number): T
         isFetching,userId
     }
 }
+
+export const getUsersThunkCreator=(currentPage:number,pageSize:number)=>
+  (dispatch:dispatchType)=>{
+        dispatch(toggleIsFetchingAC(true));
+
+        UsersAPI.getUsers(currentPage,pageSize).then(data => {
+            dispatch(toggleIsFetchingAC(false))
+            dispatch(setUsersAC(data.items))
+            dispatch(setTotalUsersCountAC(data.totalCount))
+        })
+
+}
+
+export const followThunkCreator=(userId:number)=>
+    (dispatch:dispatchType)=>{
+
+        dispatch(toggleFollowingProgressAC(true,userId))
+
+        UsersAPI.follow(userId).then(response => {
+            if (response.data.resultCode ==0)
+            {dispatch(followSucAC(userId))}
+
+            dispatch(toggleFollowingProgressAC(false,userId))
+        })
+    }
+
+export const unfollowThunkCreator=(userId:number)=>
+    (dispatch:dispatchType)=>{
+
+        dispatch(toggleFollowingProgressAC(true,userId))
+
+        UsersAPI.follow(userId).then(response => {
+            if (response.data.resultCode ==0)
+            {dispatch(unfollowSucAC(userId))}
+
+            dispatch(toggleFollowingProgressAC(false,userId))
+        })
+    }

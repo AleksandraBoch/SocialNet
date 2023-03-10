@@ -40,7 +40,7 @@ const App: React.FC<AppPropsType> = () => {
                             // dialogsPage={props.store.getState().dialogsPage}
                          />}/>
 
-                        <Route path={'/users'} element={<UserContainer   />}/>
+                        <Route path={'/users'} element={<UserContainer    />}/>
 
                         <Route path={'/news'} element={<News/>}/>
                     </Routes>

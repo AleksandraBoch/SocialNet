@@ -1,18 +1,14 @@
 import React from "react";
 import {AppStateType} from "../State/redux-store";
 import {
-    followAC,
+    followSucAC, getUsersThunkCreator,
     setCurrentPageAC,
-    setTotalUSersCount,
-    setUsersAC, toggleFollowingProgressAC,
-    toggleIsFetchingAC,
-    unfollowAC
-} from "../State/friendsReduser";
+    setTotalUsersCountAC,
+     toggleFollowingProgressAC, unfollowSucAC} from "../State/friendsReduser";
 import {connect} from "react-redux";
-import axios from "axios";
 import {Users} from "./Users";
 import {Preloader} from "../Staff/preloader";
-import {getUsers} from "../API/api";
+
 
 type MapStatePropsType = {
     users: Array<UserType>
@@ -23,16 +19,6 @@ type MapStatePropsType = {
     followInProgress:number[]
 
 }
-
-// type MapDispatchPropsType = {
-//     follow: (userID: number) => void,
-//     unfollow: (userId: number) => void,
-//     setUsers: (users: Array<UserType>) => void,
-//     setTotalUsersCount: (totalUsersCount: number) => void,
-//     setCurrentPage: (pageNumber: number) => void,
-//     toggleIsFetching:(isFetching:boolean)=>void,
-//     toggleFollowingProgress:(isFetching:boolean)=>void
-// }
 
 export type UserType = {
     id: number,
@@ -49,16 +35,15 @@ export type FriendsPropsType = {
     users: UserType[],
     follow: (id: number) => void,
     unfollow: (id: number) => void
-    setUsers: (e: Array<UserType>) => void
     pageSize: number,
     setCurrentPage: (currentPage: number) => void
     setTotalUsersCount: (totalUsersCount: number) => void
     totalUsersCount: number,
     currentPage: number,
     isFetching: boolean,
-    toggleIsFetching: (isFetching: boolean) => void
     toggleFollowingProgress: (isFetching: boolean,id:number) =>void,
-    followInProgress: number[]
+    followInProgress: number[],
+    getUsers: (currentPage: number, pageSize: number) => void
 }
 const mapStateProps = (state: AppStateType): MapStatePropsType => {
     return {
@@ -68,30 +53,24 @@ const mapStateProps = (state: AppStateType): MapStatePropsType => {
         currentPage: state.friendsPage.currentPage,
         isFetching:state.friendsPage.isFetching,
         followInProgress:state.friendsPage.followInProgress,
+
     }
 
 }
 
-//
-
 
 class UsersContainer extends React.Component<FriendsPropsType> {
 
-    componentDidMount() {
-        this.props.toggleIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,{withCredentials: true}).
-        then(response => {
-            this.props.toggleIsFetching(false)
-            this.props.setUsers(response.data.items)
-            this.props.setTotalUsersCount(response.data.totalCount)
-        })
+    componentDidMount()
+
+    {
+        this.props.getUsers(this.props.currentPage,this.props.pageSize)
+
     }
 
     onPageChanged = (pageNumber: number) => {
-        this.props.setCurrentPage(pageNumber)
-      getUsers(this.props.pageSize,this.props.currentPage).then(response => {
-            this.props.setUsers(response.data.items)
-        })
+        this.props.setCurrentPage(pageNumber);
+        this.props.getUsers(pageNumber, this.props.pageSize)
     }
 
 
@@ -109,6 +88,7 @@ class UsersContainer extends React.Component<FriendsPropsType> {
                     unfollow={this.props.unfollow}
                     toggleFollowingProgress={this.props.toggleFollowingProgress}
                     followInProgress={this.props.followInProgress}
+
                 />
             </>
         )
@@ -117,11 +97,10 @@ class UsersContainer extends React.Component<FriendsPropsType> {
 
 
 export const UserContainer = connect(mapStateProps, {
-    follow: followAC,
-    unfollow: unfollowAC,
-    setUsers: setUsersAC,
-    setTotalUsersCount: setTotalUSersCount,
+    follow: followSucAC,
+    unfollow: unfollowSucAC,
+    setTotalUsersCount: setTotalUsersCountAC,
     setCurrentPage: setCurrentPageAC,
-    toggleIsFetching:toggleIsFetchingAC,
-    toggleFollowingProgress:toggleFollowingProgressAC
+    toggleFollowingProgress:toggleFollowingProgressAC,
+    getUsers:getUsersThunkCreator
 })(UsersContainer)

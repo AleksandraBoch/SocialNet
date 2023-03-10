@@ -10,17 +10,21 @@ const instance=axios.create({
 
 })
 
+export const UsersAPI={
+    getUsers:(pageNumber:number,pageSize:number)=>{
+    return instance.get(`users?page=${pageNumber}&count=${pageSize}`,
+    ).then(response => {
+        return response.data
+    })
+},
 
 
-export const getUsers=(pageNumber:number,pageSize:number)=>{
-    return   instance.get(`users?page=${pageNumber}&count=${pageSize}`,
-        {})
+
+follow:(userId:number)=>{
+    return instance.post(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`)
+    },
+    unfollow:(userId:number)=>{
+        return instance.post(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`)
+    }
 }
 
-// export const unfollow=()=>{return
-//     instance.post(`follow/${f.id}`,{})
-//
-// }
-export const follow=()=>{
-
-}

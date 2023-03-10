@@ -1,9 +1,10 @@
 import React from "react";
-import {combineReducers, legacy_createStore as createStore} from 'redux';
+import {applyMiddleware, combineReducers, legacy_createStore as createStore} from 'redux';
 import {profileReducer} from "./profileReducer";
 import {dialogsReducer} from "./dialogsReduser";
 import {friendsReducer} from "./friendsReduser";
 import authReducer from "./authReduser";
+import thunk from "redux-thunk";
 
 export type AppStateType = ReturnType<typeof rootReducer>
 // export type StoreType = typeof store;
@@ -19,7 +20,8 @@ let rootReducer=combineReducers(
     }
 )
 
-let store=createStore(rootReducer);
+export type dispatchType = typeof store.dispatch
+let store=createStore(rootReducer,applyMiddleware(thunk));
 
 export default store;
 
