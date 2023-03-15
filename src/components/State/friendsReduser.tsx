@@ -2,6 +2,8 @@ import React from "react";
 import {UserType} from "../users/usersContainer";
 import {UsersAPI} from "../API/api";
 import {dispatchType} from "./redux-store";
+import axios from "axios/index";
+import {setAuthUserDataAC} from "./authReduser";
 
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
@@ -219,3 +221,4 @@ export const unfollowThunkCreator=(userId:number)=>
             dispatch(toggleFollowingProgressAC(false,userId))
         })
     }
+

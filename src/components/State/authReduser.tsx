@@ -1,4 +1,6 @@
 import React from "react";
+import {dispatchType} from "./redux-store";
+import {authAPI} from "../API/api";
 
 type AuthType={
     userId:number,
@@ -46,5 +48,17 @@ return{
     }
 }
 
+}
+
+
+export const getAuthUserData=()=>(dispatch:dispatchType)=>{
+
+    authAPI.me().
+    then(response => {
+        if (response.data.resultCode === 0) {
+
+            dispatch(setAuthUserDataAC(response.data.data.id,response.data.data.email,response.data.data.login,response.data.data.isAuth))
+        }
+    })
 }
 export default authReducer;

@@ -1,6 +1,6 @@
-import React, {useEffect} from "react";
+import React from "react";
 import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {ProfileReducerType, ProfileType} from "../State/profileReducer";
 import {AppStateType} from "../State/redux-store";
 import {ProfileInfo} from "./profileInfo/ProfileInfo";

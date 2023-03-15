@@ -2,16 +2,18 @@ import React, {ReactComponentElement, ReactElement} from "react";
 import {Profile} from "./Profile";
 import axios from "axios";
 import {connect} from "react-redux";
-import {ProfileType, setUsersProfile} from "../State/profileReducer";
+import {getUserProfile, ProfileType, setUsersProfile} from "../State/profileReducer";
 import {StateProps} from "../State/State";
 import {useLocation, useNavigate, useParams,} from "react-router-dom";
+import {UsersAPI} from "../API/api";
 
 type PathParamsType = {
     userId: string,
     router:any
 }
 type MapDispatchPropsType = {
-    setUserProfile: (profile: ProfileType) => void
+    // setUserProfile: (profile: ProfileType) => void
+    getUsersProfile:(userId:number)=>void
 }
 
 type ProfileContainerPropsType = MapStatePropsType & MapDispatchPropsType;
@@ -21,14 +23,10 @@ type NewProfileContainerPropsType = PathParamsType & ProfileContainerPropsType;
 class ProfileContainer extends React.Component<any, any>{
 
     componentDidMount() {
-        // let profileId = this.props.router.params.profileId
-        console.log(this.props)
+        let userId = this.props.router.params.profileId
+        // console.log(this.props)
 
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).
-        then(response => {
-            this.props.setUsers(response.data.items)
-            this.props.setUsersCount(response.data)
-    })}
+      this.props.getUserProfile(userId)}
 
     render(){
 
@@ -77,4 +75,4 @@ function withRouter <T>(Component: any) {
 }
 
 
-export default (connect(mapStateToProps,{setUsersProfile}))(withRouter(ProfileContainer))
+export default (connect(mapStateToProps,{getUserProfile}))(withRouter(ProfileContainer))

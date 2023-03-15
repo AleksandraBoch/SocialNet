@@ -1,6 +1,8 @@
 import React from "react";
 import {PostsDataType} from "../Profile/MyPosts/MyPosts";
 import {ActionsTypes, AddPostActionType, ChangeNewPostType, ProfilePageType, setUsersProps} from "./State";
+import {UsersAPI} from "../API/api";
+import {dispatchType} from "./redux-store";
 
 export type ProfileReducerType = {
     newPostText: string,
@@ -83,4 +85,12 @@ export let setUsersProfile=(profile:ProfilePageType):setUsersProps=>{
         type:"SET-USERS-PROFILE",
         profile
     }
+}
+
+export const getUserProfile=(userId:number)=>(dispatch:dispatchType)=>{
+    UsersAPI.getProfile(userId).
+    then(response => {
+        dispatch(setUsersProfile(response.data))
+    })
+
 }

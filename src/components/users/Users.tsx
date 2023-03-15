@@ -3,10 +3,6 @@ import s from "./friends.module.css";
 import userPhoto from "../../icons/userPhoto.png";
 import {UserType} from "./usersContainer";
 import {NavLink} from "react-router-dom";
-import axios from "axios";
-import {UsersAPI} from "../API/api";
-import {followThunkCreator} from "../State/friendsReduser";
-
 
 type UsersType = {
     pageSize: number,
