@@ -7,6 +7,7 @@ import {DialogsContainer} from "./components/Dialogs/dialogsContainer";
 import {UserContainer} from "./components/users/usersContainer";
 import ProfileContainer from "./components/Profile/profileContainer";
 import HeaderContainer from "./components/header/headerContainer";
+import {Login} from "./components/login/login";
 
 
 
@@ -43,6 +44,8 @@ const App: React.FC<AppPropsType> = () => {
                         <Route path={'/users'} element={<UserContainer    />}/>
 
                         <Route path={'/news'} element={<News/>}/>
+
+                        <Route path={'/login'} element={<Login/>}/>
                     </Routes>
 
                 </div>

@@ -16,6 +16,7 @@ export type DialogsType = {
     addMessage: (e: string) => void
     onMessageChange: (e: string) => void
 
+
     // dispatch: (action: ActionsTypes) => void,
 }
 export const Dialogs = (props:DialogsType) => {
@@ -39,11 +40,6 @@ export const Dialogs = (props:DialogsType) => {
             dispatch(changeMessageTextActionCreator(newMessageElement.current.value))
         }
     }
-    // let onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    //     if (e.currentTarget.value) {
-    //         dispatch(changeMessageTextActionCreator(e.currentTarget.value))
-    //     }
-    // }
 
     return (
         <div className={s.dialogs}>

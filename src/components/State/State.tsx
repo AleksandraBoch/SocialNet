@@ -15,6 +15,9 @@ export type DialogsPageType = {
     messageData: Array<MessagePropsType>
 }
 export type StateProps = {
+    auth: {
+        isAuth:boolean
+    };
     dialogsPage: DialogsPageType
     profilePage: ProfilePageType
 }

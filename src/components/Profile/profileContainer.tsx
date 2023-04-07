@@ -2,17 +2,16 @@ import React, {ReactComponentElement, ReactElement} from "react";
 import {Profile} from "./Profile";
 import axios from "axios";
 import {connect} from "react-redux";
-import {getUserProfile, ProfileType, setUsersProfile} from "../State/profileReducer";
+import {getUserProfile} from "../State/profileReducer";
 import {StateProps} from "../State/State";
-import {useLocation, useNavigate, useParams,} from "react-router-dom";
-import {UsersAPI} from "../API/api";
+import {Navigate, useLocation, useNavigate, useParams,} from "react-router-dom";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 type PathParamsType = {
     userId: string,
     router:any
 }
 type MapDispatchPropsType = {
-    // setUserProfile: (profile: ProfileType) => void
     getUsersProfile:(userId:number)=>void
 }
 
@@ -30,7 +29,10 @@ class ProfileContainer extends React.Component<any, any>{
 
     render(){
 
-    return(
+        // if (!this.props.isAuth) return <Navigate to={'/login'}/>
+
+
+        return(
 
 
         <>
@@ -46,14 +48,14 @@ class ProfileContainer extends React.Component<any, any>{
 }
 
 type MapStatePropsType={
-    // posts: Array<PostPropsType>
-    // profile: ProfileType | null
-    profile: any
+    profile: any,
+    // isAuth:boolean
 }
 
 let mapStateToProps=(state:StateProps):MapStatePropsType=>{
     return {
-        profile:state.profilePage.profile
+        profile:state.profilePage.profile,
+        // isAuth:state.auth.isAuth
     }
 }
 
@@ -75,4 +77,4 @@ function withRouter <T>(Component: any) {
 }
 
 
-export default (connect(mapStateToProps,{getUserProfile}))(withRouter(ProfileContainer))
+export default withAuthRedirect(connect(mapStateToProps,{getUserProfile})(withRouter(ProfileContainer)))
