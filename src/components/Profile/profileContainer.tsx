@@ -1,11 +1,12 @@
-import React, {ReactComponentElement, ReactElement} from "react";
+import React from "react";
 import {Profile} from "./Profile";
-import axios from "axios";
 import {connect} from "react-redux";
 import {getUserProfile} from "../State/profileReducer";
 import {StateProps} from "../State/State";
-import {Navigate, useLocation, useNavigate, useParams,} from "react-router-dom";
+import {useLocation, useNavigate, useParams,} from "react-router-dom";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
+import {getUsersThunkCreator} from "../State/friendsReduser";
 
 type PathParamsType = {
     userId: string,
@@ -77,4 +78,8 @@ function withRouter <T>(Component: any) {
 }
 
 
-export default withAuthRedirect(connect(mapStateToProps,{getUserProfile})(withRouter(ProfileContainer)))
+// const withAuthRedirect(connect(mapStateToProps,
+//     {getUserProfile})(withRouter(ProfileContainer)))
+
+export default compose<React.ComponentType>(connect(mapStateToProps,{getUserProfile:getUserProfile}),
+    withRouter,withAuthRedirect)(ProfileContainer)
