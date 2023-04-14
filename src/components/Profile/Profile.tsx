@@ -29,7 +29,7 @@ export const Profile = (props:ProfileType) => {
     return (
 
         <div>
-          <ProfileInfo profile={props.profile}/>
+          <ProfileInfo profile={props.profile} />
             <MyPostsContainer posts={profilePage.posts}
             newPostText={profilePage.newPostText}
             />
