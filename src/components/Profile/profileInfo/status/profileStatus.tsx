@@ -1,4 +1,5 @@
 import React from "react";
+import {updateStatus} from "../../../State/profileReducer";
 
 export type ProfileStatusType={
     status:string
@@ -8,6 +9,7 @@ class ProfileStatus extends React.Component<ProfileStatusType>{
 
 state={
     editMode:false,
+    status:this.props.status
 }
 
 activateEditMode=()=>{
@@ -16,17 +18,22 @@ activateEditMode=()=>{
 
     deactivateEditMode=()=>{
         this.setState({editMode:false})
+        updateStatus(this.state.status)
+    }
+    onStatusChange=(e:any)=>{
+   this.setState({status:e.currentTarget.value})
     }
 
     render() {
         return (<>
             {this.state.editMode ?
                 <div>
-                    <input onBlur={this.deactivateEditMode.bind(this)} type="text" value={this.props.status}
+                    <input onChange={this.onStatusChange}
+                        onBlur={this.deactivateEditMode} type="text" value={this.props.status}
                            autoFocus/>
                 </div> :
                 <div>
-                    <span onDoubleClick={this.activateEditMode.bind(this)}>{this.props.status}</span>
+                    <span onDoubleClick={this.activateEditMode}>{this.props.status}</span>
                 </div>}
             </>
         );

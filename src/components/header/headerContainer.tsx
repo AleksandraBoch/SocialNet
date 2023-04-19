@@ -3,7 +3,7 @@ import {Header} from "./header";
 import {connect} from "react-redux";
 import {AppStateType} from "../State/redux-store";
 import {compose} from "redux";
-import {getAuthUserData, setAuthUserDataAC} from "../State/authReduser";
+import {getAuthUserData} from "../State/authReduser";
 
 type HeaderContainerType = MapDispatchPropsType & MapStateToPropsType
 

@@ -1,7 +1,7 @@
 import React from "react";
 import {PostsDataType} from "../Profile/MyPosts/MyPosts";
-import {ActionsTypes, AddPostActionType, ChangeNewPostType, ProfilePageType, setUsersProps} from "./State";
-import {UsersAPI} from "../API/api";
+import {ActionsTypes, AddPostActionType, ChangeNewPostType, ProfilePageType, setStatus, setUsersProps} from "./State";
+import {ProfileAPI, UsersAPI} from "../API/api";
 import {dispatchType} from "./redux-store";
 
 export type ProfileReducerType = {
@@ -11,7 +11,8 @@ export type ProfileReducerType = {
         message: string,
         likesCount: number
     }[],
-    profile:any
+    profile:any,
+    status:string
 }
 
 export type ProfileType={
@@ -22,6 +23,8 @@ export type ProfileType={
         large: string | undefined,
         small: string | undefined
     },
+    status:string,
+    updateStatus:(status:string)=>void
 }
 
 
@@ -36,6 +39,7 @@ let initialState = {
             {id: 3, message: 'im learning js', likesCount: 1}
         ],
     profile:null,
+    status:'',
 }
 
 export const profileReducer = (state: ProfileReducerType = initialState, action: ActionsTypes): ProfileReducerType => {
@@ -52,8 +56,8 @@ export const profileReducer = (state: ProfileReducerType = initialState, action:
             // state.newPostText = ' '
             return {
                 ...state,
-                newPostText: '',
-                posts: [...state.posts, newPost]
+                // newPostText: '',
+                posts: [newPost,...state.posts ]
             }
 
         case 'CHANGE-NEW-POST':
@@ -63,14 +67,24 @@ export const profileReducer = (state: ProfileReducerType = initialState, action:
 
         case 'SET-USERS-PROFILE':
             return {...state,profile:action.profile}
-    }
+
+    case 'SET-STATUS':{
+        return {...state,status:action.status}
+    } }
     return state
+}
+
+export let setStatusAC=(status:string):setStatus=>{
+    return {
+       type:'SET-STATUS',
+       status
+    }
 }
 
 export let addPostActionCreator = (postText: string): AddPostActionType => {
     return {
         type: "ADD-POST",
-        postText: postText
+        postText
     }
 }
 
@@ -85,6 +99,20 @@ export let setUsersProfile=(profile:ProfilePageType):setUsersProps=>{
         type:"SET-USERS-PROFILE",
         profile
     }
+}
+
+
+export const getStatus=(userId:number,status:string)=>(dispatch:dispatchType)=>{
+    ProfileAPI.getStatus(userId).then(response=>{
+        dispatch(setStatusAC(response.data))
+    })
+}
+export const updateStatus=(status:string)=>(dispatch:dispatchType)=>{
+    ProfileAPI.updateStatus(status).then(response=>{
+        if(response.data.resultCode===0)
+        {dispatch(setStatusAC(status))}
+
+    })
 }
 
 export const getUserProfile=(userId:number)=>(dispatch:dispatchType)=>{

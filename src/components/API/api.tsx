@@ -22,11 +22,20 @@ export const UsersAPI = {
         return instance.post(`follow/${userId}`)},
 
 getProfile:(userId: number)=>{
-   return instance.get(`profile/${userId}`)},
+        console.warn('use ProfileApi obj')
+   return ProfileAPI.getProfile(userId)
+}};
 
-
+export const ProfileAPI = {
+    getProfile:(userId: number)=>{
+        return instance.get(`profile/${userId}`)},
+    getStatus:(userId:number)=>{
+        return instance.get(`status/${userId}`)
+    },
+    updateStatus:(status:string)=>{
+        return instance.put(`status`,{status:status})
+    }
 }
-
 export const  authAPI={
     me() {return instance.get(`auth/me`,)
 }}

@@ -17,7 +17,7 @@ export const MyPostsContainer = (props: PostPropsType) => {
 
     const addPost = () => {
 
-      dispatch(addPostActionCreator('newPostText'))
+      dispatch(addPostActionCreator(''))
     }
 
     let onPostChange = (e: string) => {

@@ -6,6 +6,8 @@ import ProfileStatus, {ProfileStatusType} from "./status/profileStatus";
 
 export type ProfileInfoT={
    profile: ProfilePageType,
+    status:string,
+    updateStatus:(status:string)=>void
     }
 
 

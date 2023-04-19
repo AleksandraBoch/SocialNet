@@ -22,6 +22,7 @@ export type StateProps = {
     profilePage: ProfilePageType
 }
 export type ProfilePageType = {
+    status: string;
     newPostText: string
     posts: Array<PostsDataType>,
     profile:any,
@@ -32,7 +33,14 @@ export type StoreType = {
     state: StateProps,
 }
 export type ActionsTypes = AddPostActionType|
-setUsersProps| ChangeNewPostType | UpdateNewMessageBody | AddMessageType
+setUsersProps| ChangeNewPostType |
+  setStatus  |UpdateNewMessageBody | AddMessageType
+
+
+export type setStatus={
+    type:'SET-STATUS',
+    status:string
+}
 export type UpdateNewMessageBody = {
     type: 'UPDATE-NEW-MESSAGE-BODY',
     newMessageText: string
