@@ -5,10 +5,13 @@ import {dialogsReducer} from "./dialogsReduser";
 import {friendsReducer} from "./friendsReduser";
 import authReducer from "./authReduser";
 import thunk from "redux-thunk";
+import {reducer as formReducer} from "redux-form";
 
 export type AppStateType = ReturnType<typeof rootReducer>
 // export type StoreType = typeof store;
 // export type StoreType = ReturnType<typeof rootReducer>;
+
+
 
 let rootReducer=combineReducers(
     {
@@ -16,6 +19,8 @@ let rootReducer=combineReducers(
         dialogsPage: dialogsReducer,
         friendsPage:friendsReducer,
         auth:authReducer,
+        form:formReducer,
+
 
     }
 )

@@ -24,6 +24,9 @@ activateEditMode=()=>{
    this.setState({status:e.currentTarget.value})
     }
 
+    componentDidUpdate(prevProps: Readonly<ProfileStatusType>, prevState: Readonly<{}>, snapshot?: any) {
+    }
+
     render() {
         return (<>
             {this.state.editMode ?

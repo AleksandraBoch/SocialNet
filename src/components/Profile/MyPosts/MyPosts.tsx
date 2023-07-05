@@ -1,6 +1,7 @@
 import React, {ChangeEvent} from "react";
 import s from './MyPosts.module.css'
 import {Post} from "./Post/Post";
+import {PostRed} from "./Post/postsForm";
 
 export type PostsDataType = {
     id: number
@@ -38,15 +39,16 @@ props.addPost(props.newPostText)
 
             <h3>my posts</h3>
             <div>new post
-                <div>
-                    <textarea ref={newPostElement}
-                              onChange={onPostChange}
-                        // value={props.newPostText}
-                    />
-                </div>
-                <div>
-                    <button onClick={addPost}>add post</button>
-                </div>
+                {/*<div>*/}
+                {/*    <textarea ref={newPostElement}*/}
+                {/*              onChange={onPostChange}*/}
+                {/*        // value={props.newPostText}*/}
+                {/*    />*/}
+                {/*</div>*/}
+                {/*<div>*/}
+                {/*    <button onClick={addPost}>add post</button>*/}
+                {/*</div>*/}
+                <PostRed/>
 
             </div>
             <div className={s.posts}>

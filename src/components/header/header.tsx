@@ -1,6 +1,8 @@
 import React from "react";
 import s from './header.module.css'
 import {NavLink} from "react-router-dom";
+import Login from "./login/login";
+
 
 type HeaderType={
     userId: number,
@@ -17,12 +19,15 @@ export const Header=(props:HeaderType)=>{
     <div className={s.login}>
         {props.isAuth
         ?props.login:
-            <NavLink to={'/login'}>Login</NavLink>
+
+            <NavLink to={'/Login'} >Login</NavLink>
+
         }
 
        
 
     </div>
+    <Login/>
 
 
     </header>

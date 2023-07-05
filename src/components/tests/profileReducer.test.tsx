@@ -10,7 +10,8 @@ import {addPostActionCreator, profileReducer, ProfileReducerType} from "../State
                 {id: 2, message: 'Im Okay', likesCount: 11},
                 {id: 3, message: 'im learning js', likesCount: 1}
             ],
-        profile:null
+        status:'',
+        profile:null,
     }
 const action=addPostActionCreator('new post')
         const endState=profileReducer(startState,action)

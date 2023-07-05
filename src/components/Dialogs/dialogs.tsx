@@ -1,13 +1,13 @@
-import React, {ChangeEvent, ChangeEventHandler} from "react";
+import React from "react";
 import s from './Dialogs.module.css'
-import {DialogItem, DialogsItemProps} from "./DialogItem/dialogItem";
-import {Message, MessagePropsType} from "./Message/message";
+import {DialogItem} from "./DialogItem/dialogItem";
+import {Message} from "./Message/message";
 import {
     changeMessageTextActionCreator, DialogsReducerType,
 } from "../State/dialogsReduser";
 import {addMessageAC} from "../State/dialogsReduser";
-import {DialogsPageType, StateProps} from "../State/State";
 import {useDispatch} from "react-redux";
+import {MessForm} from "./messageForm";
 
 
 export type DialogsType = {
@@ -30,6 +30,9 @@ export const Dialogs = (props:DialogsType) => {
 
     let newMessageElement = React.createRef<HTMLTextAreaElement>()
 
+let onNewMessageClick=()=>{
+        props.addMessage
+}
 
     const addNewMessage = () => {
         dispatch(addMessageAC(props.dialogsPage.newMessageText))
@@ -52,12 +55,14 @@ export const Dialogs = (props:DialogsType) => {
                                                                             message={message.message}/>)}</div>
 
             </div>
-            <textarea ref={newMessageElement}
-                      value={props.dialogsPage.newMessageText}
-                      placeholder={'введите сообщение'}
-                      onChange={onNewMessageChange}
-            />
-            <button onClick={addNewMessage}>Send</button>
+            {/*<textarea ref={newMessageElement}*/}
+            {/*          value={props.dialogsPage.newMessageText}*/}
+            {/*          placeholder={'введите сообщение'}*/}
+            {/*          onChange={onNewMessageChange}*/}
+            {/*/>*/}
+            {/*<button onClick={addNewMessage}>Send</button>*/}
+
+<MessForm />
         </div>
 
 
